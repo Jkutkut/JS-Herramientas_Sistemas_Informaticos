@@ -20,9 +20,10 @@
 		<!-- Base converter module -->
 		<div class="moduleContainer">
 			<div class="moduleTool">
+				<h2>Base converter</h2>
 				<div class="inputField">
 					<label for="numberBaseConverter">Number: </label>
-					<input type="text" name="Input" class="textInput" id="baseConverterInput" onchange="converterUpdate()">
+					<input type="text" class="textInput" id="baseConverterInput" onchange="converterUpdate()">
 				</div>
 
 				<div class="moduleTool horizontalAlign">
@@ -37,8 +38,45 @@
 				</div>
 
 				<div class="inputField">
-					<label for="numberBaseConverter">Result:</label>
-					<input type="text" name="Input" class="textInput" id="baseConverterOutput" readonly="readonly">
+					<label for="baseConverterOutput">Result:</label>
+					<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
+				</div>
+			</div>
+		</div>
+
+		<!-- ASCII-text-binary converter -->
+		<div class="moduleContainer">
+			<div class="moduleTool">
+				<h2>ASCII code to binary</h2>
+				<div class="inputField">
+					<label for="ascii2binaryInput">Content: </label>
+					<input type="text" class="textInput" id="ascii2binaryInput" onchange="converterUpdate()">
+				</div>
+
+				<div class="inputField">
+					<label for="ascii2binaryOutputCode">Codes :</label>
+					<input type="text" class="textInput" id="ascii2binaryOutputCode" readonly="readonly">
+				</div>
+				<div class="inputField">
+					<label for="ascii2binaryOutputBin">Binary:</label>
+					<input type="text" class="textInput" id="ascii2binaryOutputBin" readonly="readonly">
+				</div>
+			</div>
+
+			<div class="moduleTool">
+				<h2>Binary to ASCII code</h2>
+				<div class="inputField">
+					<label for="binary2asciiInput">Binary: </label>
+					<input type="text" class="textInput" id="binary2asciiInput" onchange="converterUpdate()">
+				</div>
+
+				<div class="inputField">
+					<label for="binary2asciiOutputCode">Codes :</label>
+					<input type="text" class="textInput" id="binary2asciiOutputCode" readonly="readonly">
+				</div>
+				<div class="inputField">
+					<label for="binary2asciiOutputBin">Content:</label>
+					<input type="text" class="textInput" id="binary2asciiOutputBin" readonly="readonly">
 				</div>
 			</div>
 		</div>
