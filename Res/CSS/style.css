@@ -1,0 +1,22 @@
+:root {
+    --backgroundColor: rgb(100, 200, 100);
+}
+
+body {
+    background: var(--backgroundColor);
+}
+
+
+.moduleTool {
+    background: red;
+    width: 300px;
+}
+.inputField label {
+    background: green;
+    width: auto;
+}
+
+.inputField input {
+    width: fit-content;
+    right: 0px;
+}
