@@ -47,6 +47,7 @@ body {
 }
 
 .inputField .textInput {
+    text-transform: uppercase;
 }
 
 .inputField .numberContainer {
