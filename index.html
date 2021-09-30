@@ -10,30 +10,35 @@
 		<link rel="stylesheet" type="text/css" href="Res/CSS/style.css">
 
 		<!-- JS -->
+		<script src="Res/JS/baseConverter.js"></script>
+		<script src="Res/JS/binary2ASCII2text.js"></script>
+		<script src="Res/JS/text2ASCII2binary.js"></script>
+
 		<script src="sketch.js"></script>
 	</head>
 	<body>
+		<!-- Base converter module -->
 		<div class="moduleContainer">
 			<div class="moduleTool">
 				<div class="inputField">
 					<label for="numberBaseConverter">Number: </label>
-					<input type="text" name="Input" class="textInput" id="numberBaseConverter">
+					<input type="text" name="Input" class="textInput" id="baseConverterInput" onchange="converterUpdate()">
 				</div>
 
 				<div class="moduleTool horizontalAlign">
 					<div class="inputField">
 						<label for="baseFrom">Base from: </label>
-						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" value="10">
+						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" onchange="converterUpdate()" value="10">
 					</div>
 					<div class="inputField">
 						<label for="baseTo">Base to:</label>
-						<input type="number" name="baseTo" id="baseTo" class="numberContainer" value="2">
+						<input type="number" name="baseTo" id="baseTo" class="numberContainer" onchange="converterUpdate()" value="2">
 					</div>
 				</div>
 
 				<div class="inputField">
 					<label for="numberBaseConverter">Result:</label>
-					<input type="text" name="Input" class="textInput" id="numberBaseConverter" readonly="readonly">
+					<input type="text" name="Input" class="textInput" id="baseConverterOutput" readonly="readonly">
 				</div>
 			</div>
 		</div>
