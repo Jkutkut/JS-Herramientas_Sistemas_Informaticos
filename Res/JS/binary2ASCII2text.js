@@ -14,5 +14,5 @@ function binary2ASCII2text(binArr) {
 if (typeof require !== 'undefined' && require.main === module) {
     const input = '1001000 1100101 1101100 1101100 1101111 100000 1110111 1101111 1110010 1101100 1100100';
 
-    console.log(binary2ASCII2text(input.split(" ")));
+    console.log(binary2ASCII2text(input.split(" ")).join(""));
 }
