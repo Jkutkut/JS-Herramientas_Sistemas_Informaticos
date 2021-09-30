@@ -16,6 +16,10 @@ body {
     border-radius: 10px;
 }
 
+h2 {
+    margin: 10px;
+}
+
 .moduleTool {
     display: flex;
     flex-direction: column;
