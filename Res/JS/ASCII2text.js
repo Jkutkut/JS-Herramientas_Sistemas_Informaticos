@@ -1,19 +1,17 @@
-function binary2ASCII(strArr) {
-
-    var newBin = strArr.split(" ");
+function binary2ASCII(binArr) {
     var binCode = [];
     
-    for (i = 0; i < newBin.length; i++) {
-        binCode.push(String.fromCharCode(parseInt(newBin[i], 2)));
+    for (i = 0; i < binArr.length; i++) {
+        binCode.push(String.fromCharCode(parseInt(binArr[i], 2)));
     }
-    return binCode.join("");
+    return binCode;
 }
 
 
 if (typeof require !== 'undefined' && require.main === module) {
-    const input = '01001001 00100000 01101100 01101111 01110110 01100101 00100000 01111001 01101111 01110101';
+    const input = '1001000 1100101 1101100 1101100 1101111 100000 1110111 1101111 1110010 1101100 1100100';
     
-    let t = binary2ASCII(input);
+    let t = binary2ASCII(input.split(" "));
 
-    console.log(t);
+    console.log(t.join(""));
 }
