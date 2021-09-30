@@ -23,17 +23,17 @@
 				<h2>Base converter</h2>
 				<div class="inputField">
 					<label for="numberBaseConverter">Number: </label>
-					<input type="text" class="textInput" id="baseConverterInput" onchange="baseConverterUpdate()">
+					<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
 				</div>
 
 				<div class="moduleTool horizontalAlign">
 					<div class="inputField">
 						<label for="baseFrom">Base from: </label>
-						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" onchange="baseConverterUpdate()" value="10">
+						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
 					</div>
 					<div class="inputField">
 						<label for="baseTo">Base to:</label>
-						<input type="number" name="baseTo" id="baseTo" class="numberContainer" onchange="baseConverterUpdate()" value="2">
+						<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
 					</div>
 				</div>
 
@@ -50,7 +50,7 @@
 				<h2>ASCII code to binary</h2>
 				<div class="inputField">
 					<label for="ascii2binaryInput">Content: </label>
-					<input type="text" id="ascii2binaryInput" onchange="ascii2binConverter()">
+					<input type="text" id="ascii2binaryInput" oninput="ascii2binConverter()">
 				</div>
 
 				<div class="inputField">
@@ -67,7 +67,7 @@
 				<h2>Binary to ASCII code</h2>
 				<div class="inputField">
 					<label for="binary2asciiInput">Binary: </label>
-					<input type="text" id="binary2asciiInput" onchange="bin2asciiConverter()">
+					<input type="text" id="binary2asciiInput" oninput="bin2asciiConverter()">
 				</div>
 
 				<div class="inputField">
