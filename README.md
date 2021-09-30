@@ -1,2 +1,2 @@
--e # JS-Herramientas_Sistemas_Informaticos:
+# JS-Herramientas_Sistemas_Informaticos:
 
