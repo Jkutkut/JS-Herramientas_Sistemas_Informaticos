@@ -35,3 +35,16 @@ function bin2asciiConverter() {
     document.getElementById("binary2asciiOutputCode").value = output.codes;
     document.getElementById("binary2asciiOutputBin").value = output.output;
 }
+
+
+function copyToClipboard(outputId) {
+    // Get element
+    let copyText = document.getElementById(outputId);
+    
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+}
