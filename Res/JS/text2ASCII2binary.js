@@ -7,7 +7,7 @@ function text2ASCII2binary(text, log=true) {
     let t = [];
     for (let i = 0; i < text.length; i++) {
         let code = text.charCodeAt(i);
-        let bin = (code >>> 0).toString(2);;
+        let bin = (code >>> 0).toString(2);
         if (log) {
             console.log(`${text[i]} -> ${code} -> ${bin}`);
         }
