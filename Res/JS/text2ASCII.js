@@ -9,10 +9,13 @@ const readline = require('readline').createInterface({
    
 readline.question('Name?', name => {
     console.log(`Hey there ${name}!`);
-
+    let t = [];
     for (let i = 0; i < name.length; i++) {
         let code = name.charCodeAt(i);
-        console.log(`${name[i]} -> ${code} -> ${dec2bin(code)}`);
+        let bin = dec2bin(code);
+        console.log(`${name[i]} -> ${code} -> ${bin}`);
+        t.push(bin);
     }
     readline.close();
+    console.log(t.join(" "));
   });
