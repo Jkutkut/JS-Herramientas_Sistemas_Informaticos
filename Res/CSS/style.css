@@ -1,22 +1,53 @@
 :root {
     --backgroundColor: rgb(100, 200, 100);
+    --textSize: 1.2rem;
 }
 
 body {
     background: var(--backgroundColor);
+    font-size: var(--textSize);
 }
 
+
+.moduleContainer {
+    width: 330px;
+    margin: 20px;
+}
 
 .moduleTool {
-    background: red;
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    width: var(--height, auto);
+    align-items: center;
+    align-content:center;
+    justify-content: center;
+
+    background: var(--bg, red);
 }
+
+.horizontalAlign {
+    flex-direction: row;
+}
+
+.inputField {
+    display: flex;
+    align-content: flex-end;
+    background: yellow;
+    padding: 10px;
+}
+
 .inputField label {
-    background: green;
-    width: auto;
+    margin-right: 10px;
 }
 
 .inputField input {
-    width: fit-content;
-    right: 0px;
+    float: var(--align, right);
+}
+
+.inputField .textInput {
+}
+
+.inputField .numberContainer {
+    width: 30%;
 }

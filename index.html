@@ -13,18 +13,28 @@
 		<script src="sketch.js"></script>
 	</head>
 	<body>
-		<div class="moduleTool">
-			<div class="inputField">
-				<label for="numberBaseConverter">Number: </label>
-				<input type="number" name="Input" id="numberBaseConverter">
-			</div>
-			<div class="inputField">
-				<label for="baseFrom">Base to: </label>
-				<input type="number" name="baseFrom" id="baseFrom">
-			</div>
-			<div class="inputField">
-				<label for="baseTo">Base to:</label>
-				<input type="number" name="baseTo" id="baseTo">
+		<div class="moduleContainer">
+			<div class="moduleTool">
+				<div class="inputField">
+					<label for="numberBaseConverter">Number: </label>
+					<input type="text" name="Input" class="textInput" id="numberBaseConverter">
+				</div>
+
+				<div class="moduleTool horizontalAlign">
+					<div class="inputField">
+						<label for="baseFrom">Base from: </label>
+						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" value="10">
+					</div>
+					<div class="inputField">
+						<label for="baseTo">Base to:</label>
+						<input type="number" name="baseTo" id="baseTo" class="numberContainer" value="2">
+					</div>
+				</div>
+
+				<div class="inputField">
+					<label for="numberBaseConverter">Result:</label>
+					<input type="text" name="Input" class="textInput" id="numberBaseConverter">
+				</div>
 			</div>
 		</div>
 	</body>
