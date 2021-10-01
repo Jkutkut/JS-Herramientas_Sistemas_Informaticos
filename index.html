@@ -17,72 +17,79 @@
 		<script src="sketch.js"></script>
 	</head>
 	<body>
-		<!-- Base converter module -->
-		<div class="moduleContainer">
-			<div class="moduleTool">
-				<h2>Base converter</h2>
-				<div class="inputField">
-					<label for="numberBaseConverter">Number: </label>
-					<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
+		<div class="horizontalModulesContainer">
+			<div class="verticalModulesContainer">
+				<!-- Base converter module -->
+				<div class="moduleContainer">
+					<div class="moduleTool">
+						<h2>Base converter</h2>
+						<div class="inputField">
+							<label for="numberBaseConverter">Number: </label>
+							<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
+						</div>
+
+						<div class="moduleTool horizontalAlign">
+							<div class="inputField">
+								<label for="baseFrom">Base from: </label>
+								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
+							</div>
+							<div class="inputField">
+								<label for="baseTo">Base to:</label>
+								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
+							</div>
+						</div>
+
+						<div class="inputField">
+							<label for="baseConverterOutput">Result:</label>
+							<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
+						</div>
+					</div>
 				</div>
 
-				<div class="moduleTool horizontalAlign">
-					<div class="inputField">
-						<label for="baseFrom">Base from: </label>
-						<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
-					</div>
-					<div class="inputField">
-						<label for="baseTo">Base to:</label>
-						<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
-					</div>
-				</div>
+				<!-- ASCII-text-binary converter -->
+				<div class="moduleContainer">
+					<div class="moduleTool">
+						<h2>ASCII code to binary</h2>
+						<div class="inputField">
+							<label for="ascii2binaryInput">Content: </label>
+							<input type="text" id="ascii2binaryInput" oninput="ascii2binConverter()">
+						</div>
 
-				<div class="inputField">
-					<label for="baseConverterOutput">Result:</label>
-					<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
-					<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
+						<div class="inputField">
+							<label for="ascii2binaryOutputCode">Codes :</label>
+							<input type="text" id="ascii2binaryOutputCode" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('ascii2binaryOutputCode')">
+						</div>
+						<div class="inputField">
+							<label for="ascii2binaryOutputBin">Binary:</label>
+							<input type="text" id="ascii2binaryOutputBin" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('ascii2binaryOutputBin')">
+						</div>
+					</div>
+
+					<div class="moduleTool">
+						<h2>Binary to ASCII code</h2>
+						<div class="inputField">
+							<label for="binary2asciiInput">Binary: </label>
+							<input type="text" id="binary2asciiInput" oninput="bin2asciiConverter()">
+						</div>
+
+						<div class="inputField">
+							<label for="binary2asciiOutputCode">Codes :</label>
+							<input type="text" id="binary2asciiOutputCode" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('binary2asciiOutputCode')">
+						</div>
+						<div class="inputField">
+							<label for="binary2asciiOutputBin">Content:</label>
+							<input type="text" id="binary2asciiOutputBin" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('binary2asciiOutputBin')">
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- ASCII-text-binary converter -->
-		<div class="moduleContainer">
-			<div class="moduleTool">
-				<h2>ASCII code to binary</h2>
-				<div class="inputField">
-					<label for="ascii2binaryInput">Content: </label>
-					<input type="text" id="ascii2binaryInput" oninput="ascii2binConverter()">
-				</div>
-
-				<div class="inputField">
-					<label for="ascii2binaryOutputCode">Codes :</label>
-					<input type="text" id="ascii2binaryOutputCode" readonly="readonly">
-					<input type="button" value="Copy" onclick="copyToClipboard('ascii2binaryOutputCode')">
-				</div>
-				<div class="inputField">
-					<label for="ascii2binaryOutputBin">Binary:</label>
-					<input type="text" id="ascii2binaryOutputBin" readonly="readonly">
-					<input type="button" value="Copy" onclick="copyToClipboard('ascii2binaryOutputBin')">
-				</div>
-			</div>
-
-			<div class="moduleTool">
-				<h2>Binary to ASCII code</h2>
-				<div class="inputField">
-					<label for="binary2asciiInput">Binary: </label>
-					<input type="text" id="binary2asciiInput" oninput="bin2asciiConverter()">
-				</div>
-
-				<div class="inputField">
-					<label for="binary2asciiOutputCode">Codes :</label>
-					<input type="text" id="binary2asciiOutputCode" readonly="readonly">
-					<input type="button" value="Copy" onclick="copyToClipboard('binary2asciiOutputCode')">
-				</div>
-				<div class="inputField">
-					<label for="binary2asciiOutputBin">Content:</label>
-					<input type="text" id="binary2asciiOutputBin" readonly="readonly">
-					<input type="button" value="Copy" onclick="copyToClipboard('binary2asciiOutputBin')">
-				</div>
+			<div class="verticalModulesContainer">
+				
 			</div>
 		</div>
 	</body>
