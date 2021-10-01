@@ -26,10 +26,6 @@ body {
     flex-direction: column;
 }
 
-body .noBackground {
-    /* --bg: auto; */
-}
-
 h2 {
     margin: 10px;
 }
