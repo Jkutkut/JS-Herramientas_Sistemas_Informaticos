@@ -8,12 +8,26 @@ body {
     font-size: var(--textSize);
 }
 
-
 .moduleContainer {
     width: 330px;
+    height: fit-content;
     margin: 20px;
     background: var(--bg, rgb(86, 173, 86));
     border-radius: 10px;
+}
+
+.horizontalModulesContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.verticalModulesContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+body .noBackground {
+    /* --bg: auto; */
 }
 
 h2 {
