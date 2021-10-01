@@ -67,3 +67,27 @@ h2 {
 .inputField .numberContainer {
     width: 30%;
 }
+
+/* Table */
+table {
+    width: 90%;
+    --bg: yellowgreen;
+    background: var(--bg);
+    text-align: center;
+}
+
+th {
+    border-bottom: 2px solid black;
+}
+
+td {
+    border-right: 2px solid black;
+}
+td:last-of-type {
+    border-right: none;
+}
+
+tr:nth-child(even){
+    background-color: var(--bg);
+    filter: brightness(90%);
+}

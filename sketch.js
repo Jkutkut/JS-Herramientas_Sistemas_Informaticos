@@ -1,3 +1,4 @@
+// Base converter
 function baseConverterUpdate() {
     let number = document.getElementById("baseConverterInput").value;
     let baseFrom = document.getElementById("baseFrom").value;
@@ -17,7 +18,7 @@ function baseConverterUpdate() {
     document.getElementById("baseConverterOutput").value = output;
 }
 
-
+// ASCII
 function ascii2binConverter() {
     let content = document.getElementById("ascii2binaryInput").value;
 
@@ -37,6 +38,12 @@ function bin2asciiConverter() {
 }
 
 
+function createTruth(optionsLen) {
+    let tabla = document.getElementById("truthTable");
+}
+
+
+// Help functions
 function copyToClipboard(outputId) {
     // Get element
     let copyText = document.getElementById(outputId);
