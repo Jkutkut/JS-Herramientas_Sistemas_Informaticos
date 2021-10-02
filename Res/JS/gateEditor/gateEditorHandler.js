@@ -10,6 +10,12 @@ window.onload = () => {
     ctx = gateEditorCanvas.getContext('2d');
 
     gates.push(new LogicGateAND(100, 100));
+    gates.push(new LogicGateNAND(300, 100));
+    gates.push(new LogicGateNOR(100, 200));
+    gates.push(new LogicGateNOT(300, 200));
+    gates.push(new LogicGateOR(100, 300));
+    gates.push(new LogicGateXNOR(300, 300));
+    gates.push(new LogicGateXOR(100, 400));
 
     show();
 }
