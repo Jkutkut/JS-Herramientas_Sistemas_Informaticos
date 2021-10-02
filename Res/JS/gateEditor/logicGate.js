@@ -95,4 +95,44 @@ class LogicGateAND extends LogicGate {
     }
 }
 
+class LogicGateNAND extends LogicGate {
 
+    get defaultShape() {
+        return SHAPES.NAND;
+    }
+}
+
+class LogicGateNOR extends LogicGate {
+
+    get defaultShape() {
+        return SHAPES.NOR;
+    }
+}
+
+class LogicGateNOT extends LogicGate {
+
+    get defaultShape() {
+        return SHAPES.NOT;
+    }
+}
+
+class LogicGateOR extends LogicGate {
+
+    get defaultShape() {
+        return SHAPES.OR;
+    }
+}
+
+class LogicGateXNOR extends LogicGate {
+
+    get defaultShape() {
+        return SHAPES.XNOR;
+    }
+}
+
+class LogicGateXOR extends LogicGate {
+
+    get defaultShape() {
+        return SHAPES.XOR;
+    }
+}
