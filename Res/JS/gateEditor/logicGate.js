@@ -80,7 +80,40 @@ const SHAPES = {
             [0, 0, SHAPES_SIZE, -Math.PI / 2, Math.PI / 2]
         ]
     },
-    NAND: {},
+    NAND: {
+        lines: [
+            [
+                new Point(-SHAPES_SIZE,  SHAPES_SIZE),
+                new Point(0, SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(-SHAPES_SIZE, SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(0, -SHAPES_SIZE)
+            ],
+            // Connectors
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, -SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(-SHAPES_SIZE, SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(SHAPES_SIZE * 1.4, 0),
+                new Point(SHAPES_SIZE * 1.8, 0)
+            ]
+            
+        ],
+        arcs: [
+            [0, 0, SHAPES_SIZE, -Math.PI / 2, Math.PI / 2],
+            [SHAPES_SIZE * 1.2, 0, SHAPES_SIZE * 0.2, 0, Math.PI * 2]
+        ]
+    },
     NOR: {},
     NOT: {},
     OR: {},
