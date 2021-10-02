@@ -8,13 +8,20 @@
 
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="Res/CSS/style.css">
+		<!-- <link rel="stylesheet" type="text/css" href="Res/CSS/style_2.css"> -->
+
+		<!-- <link rel="stylesheet" type="text/css" href="Res/CSS/bootstrap/bootstrap.min.css"> -->
 
 		<!-- JS -->
 		<script src="Res/JS/baseConverter.js"></script>
 		<script src="Res/JS/binary2textConverter.js"></script>
 		<script src="Res/JS/text2binaryConverter.js"></script>
-
 		<script src="sketch.js"></script>
+
+		<!-- <script src="Res/JS/bootstrap/bootstrap.min.js"></script> -->
+		<script type="text/javascript" src="Res/JS/jquery-3.6.0.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+
 	</head>
 	<body>
 		<div class="horizontalModulesContainer">
@@ -29,11 +36,11 @@
 						</div>
 
 						<div class="moduleTool horizontalAlign">
-							<div class="inputField">
+							<div class="inputField" style="--w: 40%;">
 								<label for="baseFrom">Base from: </label>
 								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
 							</div>
-							<div class="inputField">
+							<div class="inputField" style="--w: 40%;">
 								<label for="baseTo">Base to:</label>
 								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
 							</div>
@@ -106,6 +113,9 @@
 					</div>
 				</div>
 			</div> -->
+		</div>
+		<div class="horizontalModulesContainer">
+			<canvas id="gateEditor"></canvas>
 		</div>
 	</body>
 </html>
