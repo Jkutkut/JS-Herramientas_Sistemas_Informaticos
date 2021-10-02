@@ -115,7 +115,39 @@ const SHAPES = {
         ]
     },
     NOR: {},
-    NOT: {},
+    NOT: {
+        lines: [
+            [
+                new Point(-SHAPES_SIZE,  SHAPES_SIZE),
+                new Point(SHAPES_SIZE, 0)
+            ],
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(-SHAPES_SIZE, SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(SHAPES_SIZE, 0)
+            ],
+            // Connectors
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, -SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(-SHAPES_SIZE, SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(SHAPES_SIZE * 1.4, 0),
+                new Point(SHAPES_SIZE * 1.8, 0)
+            ]
+            
+        ],
+        arcs: [
+            [SHAPES_SIZE * 1.2, 0, SHAPES_SIZE * 0.2, 0, Math.PI * 2]
+        ]
+    },
     OR: {},
     XNOR: {},
     XOR: {}
