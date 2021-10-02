@@ -208,7 +208,37 @@ const SHAPES = {
         ]
     },
     XNOR: {},
-    XOR: {}
+    XOR: {
+        lines: [
+            [
+                new Point(-SHAPES_SIZE,  SHAPES_SIZE),
+                new Point(0, SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(0, -SHAPES_SIZE)
+            ],
+            // Connectors
+            [
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, -SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(-SHAPES_SIZE, SHAPES_SIZE * 0.6),
+                new Point(-SHAPES_SIZE * 1.8, SHAPES_SIZE * 0.6)
+            ],
+            [
+                new Point(SHAPES_SIZE, 0),
+                new Point(SHAPES_SIZE * 1.8, 0)
+            ]
+            
+        ],
+        arcs: [
+            [0, 0, SHAPES_SIZE, -Math.PI / 2, Math.PI / 2],
+            [-SHAPES_SIZE * 1.95, 0, SHAPES_SIZE * 1.4, -Math.PI * 0.25, Math.PI / 4],
+            [-SHAPES_SIZE * 2.25, 0, SHAPES_SIZE * 1.4, -Math.PI * 0.25, Math.PI / 4]
+        ]
+    }
 }
 
 class LogicGateAND extends LogicGate {
