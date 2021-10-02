@@ -15,6 +15,6 @@ class LogicGate {
     }
 
     get shape () {
-        return this._shape.map(x => x.times(this.pos));
+        return this._shape.map(x => x.plus(this.pos));
     }
 }
