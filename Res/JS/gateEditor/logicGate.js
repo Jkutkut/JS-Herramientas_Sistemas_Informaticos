@@ -36,32 +36,34 @@ class LogicGate {
         }
 
         for (let i = 0; i < this.defaultShape.arcs.length; i++) {
-            this._shapeOBJ.lines.push([]);
-            for (let j = 0; j < 2; j++) {
-                this._shapeOBJ.lines[i].push(this.defaultShape.arcs[i][j].plus(this.pos));
+            this._shapeOBJ.arcs.push([...this.defaultShape.arcs[i]]);
+
+            for (let k = 0; k < 2; k++) {
+                this._shapeOBJ.arcs[i][k] = this._shapeOBJ.arcs[i][k] + this.pos.pos[k];
             }
         }
     }
 }
 
+const SHAPES_SIZE = 25;
 const SHAPES = {
     AND: {
         lines: [
             [
-                new Point(-50, -50),
-                new Point(0, -50)
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(0, -SHAPES_SIZE)
             ],
             [
-                new Point(-50,  50),
-                new Point(0, 50)
+                new Point(-SHAPES_SIZE,  SHAPES_SIZE),
+                new Point(0, SHAPES_SIZE)
             ],
             [
-                new Point(-50, -50),
-                new Point(-50, 50)
+                new Point(-SHAPES_SIZE, -SHAPES_SIZE),
+                new Point(-SHAPES_SIZE, SHAPES_SIZE)
             ]
         ],
         arcs: [
-
+            [0, 0, SHAPES_SIZE, -Math.PI / 2, Math.PI / 2]
         ]
     },
     NAND: {},
