@@ -7,11 +7,20 @@ function baseConverterUpdate() {
     document.getElementById("baseFrom").value = document.getElementById("baseFrom").value >>> 0;
     if (baseFrom < 2) {
         document.getElementById("baseFrom").value = 2;
+        baseFrom = 2;
+    }
+    else if (baseFrom > 36) {
+        document.getElementById("baseFrom").value = 36;
+        baseFrom = 36;
     }
 
     document.getElementById("baseTo").value = document.getElementById("baseTo").value >>> 0;
     if (baseTo < 2) {
         document.getElementById("baseTo").value = 2;
+    }
+    else if (baseTo > 36) {
+        document.getElementById("baseTo").value = 36;
+        baseTo = 36;
     }
     
     let output = baseConverter(number, baseFrom, baseTo);
