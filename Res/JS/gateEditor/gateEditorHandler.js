@@ -23,8 +23,9 @@ window.onload = () => {
     gates.push(new LogicGateAND(200, 150));
     outputs.push(new LogicGateOutput(320, 150, 2));
 
-    links.push(new LogicLink(inputs[0], gates[0]));
-    links.push(new LogicLink(gates[0], outputs[0]));
+    links.push(new LogicLink(inputs[0], gates[0], 0));
+    links.push(new LogicLink(inputs[1], gates[0], 1));
+    links.push(new LogicLink(gates[0], outputs[0], 0));
 
     show();
 }
