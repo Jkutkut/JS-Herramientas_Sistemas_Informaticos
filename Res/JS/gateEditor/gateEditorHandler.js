@@ -20,7 +20,7 @@ window.onload = () => {
     gates.push(new LogicGateInput(100, 100, 0));
     gates.push(new LogicGateAND(200, 150));
     gates.push(new LogicGateInput(100, 200, 1));
-    gates.push(new LogicGateOutput(320, 150, 0));
+    gates.push(new LogicGateOutput(320, 150, 2));
 
     show();
 }
