@@ -221,6 +221,39 @@ const SHAPES = {
             [-SHAPES_SIZE * 1.95, 0, SHAPES_SIZE * 1.4, -Math.PI * 0.25, Math.PI / 4],
             [-SHAPES_SIZE * 2.25, 0, SHAPES_SIZE * 1.4, -Math.PI * 0.25, Math.PI / 4]
         ]
+    },
+    INPUT: {
+        lines: [
+            [
+                new Point(-SHAPES_SIZE*1.3, -SHAPES_SIZE),
+                new Point(-SHAPES_SIZE*1.3, SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE*1.3, -SHAPES_SIZE),
+                new Point(SHAPES_SIZE*1.3, -SHAPES_SIZE)
+            ],
+            [
+                new Point(-SHAPES_SIZE*1.3, SHAPES_SIZE),
+                new Point(SHAPES_SIZE*1.3, SHAPES_SIZE)
+            ],
+            [
+                new Point(SHAPES_SIZE*1.3, -SHAPES_SIZE),
+                new Point(SHAPES_SIZE*1.3, SHAPES_SIZE)
+            ],
+            [
+                new Point(SHAPES_SIZE*1.3, 0),
+                new Point(SHAPES_SIZE*1.8, 0)
+            ]
+        ],
+        arcs: []
+    },
+    OUTPUT: {
+        lines: [
+
+        ],
+        arcs: [
+            
+        ]
     }
 }
 
@@ -339,5 +372,20 @@ class LogicGateXOR extends LogicGate {
 
     get defaultShape() {
         return SHAPES.XOR;
+    }
+}
+
+// input and output
+
+class LogicGateInput extends LogicGateObject {
+    get defaultShape() {
+        return SHAPES.INPUT;
+    }
+}
+
+class LogicGateOutput extends LogicGateObject {
+    get defaultShape() {
+        return SHAPES.AND;
+        return SHAPES.OUTPUT;
     }
 }
