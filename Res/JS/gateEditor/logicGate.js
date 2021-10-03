@@ -15,6 +15,10 @@ class LogicGateObject {
         this.moveTo(x, y);
 
         this._IO_SIZE = {IN: 0, OUT: 0};
+        this.IO = {
+            in: [],
+            out: []
+        }
     }
 
     // Getters
@@ -66,6 +70,23 @@ class LogicGateObject {
         return IO.OUTPUT[this.IO_SIZE.OUT - 1][index].plus(this.pos);
     }
 
+    getPortLocation(link) {
+        for (let i = 0; i < this.IO.in.length; i++) {
+            if (this.IO.in[i] == link) {
+                return this.getIN_location(i);
+            }
+        }
+
+        for (let i = 0; i < this.IO.out.length; i++) {
+            if (this.IO.out[i] == link) {
+                return this.getOUT_location(0);
+                // return this.getOUT_location(i);
+            }
+        }
+
+        throw new Error("The given link is not connected to this object.");
+    }
+
     /**
      * The amount of In and Out ports of the current device.
      */
@@ -109,6 +130,17 @@ class LogicGateObject {
      */
     moveToPoint(p) {
         this.moveTo(...p.pos);
+    }
+
+    connectInput(link, port) {
+        if (this.IO.in[port] != undefined) {
+            throw new Error("Port busy, please use another port");
+        }
+        this.IO.in[port] = link;
+    }
+
+    connectOutput(link) {
+        this.IO.out.push(link);
     }
 }
 
