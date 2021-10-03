@@ -85,6 +85,22 @@ function handleMouseDown(e) {
             break;
         }
     }
+
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].isPointInside(mouse)) {
+            draggingGate = inputs[i];
+            refreshingCanvas = setInterval(show, 40);
+            break;
+        }
+    }
+
+    for (let i = 0; i < outputs.length; i++) {
+        if (outputs[i].isPointInside(mouse)) {
+            draggingGate = outputs[i];
+            refreshingCanvas = setInterval(show, 40);
+            break;
+        }
+    }
 }
 
 function handleMouseUp(e) {
