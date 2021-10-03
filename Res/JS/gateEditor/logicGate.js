@@ -228,6 +228,12 @@ class LogicGateIO extends LogicGateObject {
 }
 
 class LogicGateInput extends LogicGateIO {
+    constructor(x, y, index) {
+        super(x, y, index);
+
+        this._IO_SIZE = {IN: 0, OUT: 1};
+    }
+
     get bodyShape() {
         return SHAPES.INPUT;
     }
@@ -238,6 +244,12 @@ class LogicGateInput extends LogicGateIO {
 }
 
 class LogicGateOutput extends LogicGateIO {
+    constructor(x, y, index) {
+        super(x, y, index);
+
+        this._IO_SIZE = {IN: 1, OUT: 0};
+    }
+
     get bodyShape() {
         return SHAPES.OUTPUT;
     }
