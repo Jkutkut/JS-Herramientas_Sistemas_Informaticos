@@ -113,12 +113,8 @@ const SHAPES = {
             ],
             // Connectors
             [
-                new Point(-SHAPES_SIZE, -SHAPES_SIZE * 0.6),
-                new Point(-SHAPES_SIZE * 1.8, -SHAPES_SIZE * 0.6)
-            ],
-            [
-                new Point(-SHAPES_SIZE, SHAPES_SIZE * 0.6),
-                new Point(-SHAPES_SIZE * 1.8, SHAPES_SIZE * 0.6)
+                new Point(-SHAPES_SIZE, 0),
+                new Point(-SHAPES_SIZE * 1.8, 0)
             ],
             [
                 new Point(SHAPES_SIZE * 1.4, 0),
