@@ -31,36 +31,7 @@
 	</head>
 	<body>
 		<div class="horizontalModulesContainer">
-			<!-- <div class="verticalModulesContainer"> -->
 			<div class="horizontalModulesContainer">
-				<!-- Base converter module -->
-				<div class="moduleContainer">
-					<div class="moduleTool">
-						<h2>Base converter</h2>
-						<div class="inputField">
-							<label for="numberBaseConverter">Number: </label>
-							<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
-						</div>
-
-						<div class="moduleTool horizontalAlign">
-							<div class="inputField" style="--w: 40%;">
-								<label for="baseFrom">Base from: </label>
-								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
-							</div>
-							<div class="inputField" style="--w: 40%;">
-								<label for="baseTo">Base to:</label>
-								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
-							</div>
-						</div>
-
-						<div class="inputField">
-							<label for="baseConverterOutput">Result:</label>
-							<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
-							<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
-						</div>
-					</div>
-				</div>
-
 				<!-- ASCII-text-binary converter -->
 				<div class="moduleContainer">
 					<div class="moduleTool">
@@ -98,6 +69,34 @@
 							<label for="binary2asciiOutputBin">Content:</label>
 							<input type="text" id="binary2asciiOutputBin" readonly="readonly">
 							<input type="button" value="Copy" onclick="copyToClipboard('binary2asciiOutputBin')">
+						</div>
+					</div>
+				</div>
+
+				<!-- Base converter module -->
+				<div class="moduleContainer">
+					<div class="moduleTool">
+						<h2>Base converter</h2>
+						<div class="inputField">
+							<label for="numberBaseConverter">Number: </label>
+							<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
+						</div>
+
+						<div class="moduleTool horizontalAlign">
+							<div class="inputField" style="--w: 40%;">
+								<label for="baseFrom">Base from: </label>
+								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
+							</div>
+							<div class="inputField" style="--w: 40%;">
+								<label for="baseTo">Base to:</label>
+								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
+							</div>
+						</div>
+
+						<div class="inputField">
+							<label for="baseConverterOutput">Result:</label>
+							<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
 						</div>
 					</div>
 				</div>
