@@ -101,3 +101,40 @@ function handleMouseMove(e) {
         draggingGate.moveToPoint(mouse);
     }   
 }
+
+const addElement = {
+    AND: () => {
+        addGate(LogicGateAND);
+    },
+    NAND: () => {
+        addGate(LogicGateNAND);
+    },
+    NOR: () => {
+        addGate(LogicGateNOR);
+    },
+    NOT: () => {
+        addGate(LogicGateNOT);
+    },
+    OR: () => {
+        addGate(LogicGateOR);
+    },
+    XNOR: () => {
+        addGate(LogicGateXNOR);
+    },
+    XOR: () => {
+        addGate(LogicGateXOR);
+    },
+    input: () => {
+        addGate(LogicGateInput);
+    },
+    output: () => {
+        addGate(LogicGateOutput);
+    },
+
+}
+
+function addGate(obj) {
+    gates.push(new obj(200, 100));
+
+    show();
+}
