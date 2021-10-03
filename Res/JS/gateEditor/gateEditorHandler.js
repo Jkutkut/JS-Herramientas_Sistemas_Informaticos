@@ -6,6 +6,7 @@ var canvasOffset;
 var gates = [];
 var inputs = [];
 var outputs = [];
+var links = [];
 
 window.onload = () => {
 
@@ -21,6 +22,9 @@ window.onload = () => {
     inputs.push(new LogicGateInput(100, 200, 1));
     gates.push(new LogicGateAND(200, 150));
     outputs.push(new LogicGateOutput(320, 150, 2));
+
+    links.push(new LogicLink(inputs[0], gates[0]));
+    links.push(new LogicLink(gates[0], outputs[0]));
 
     show();
 }
@@ -41,6 +45,9 @@ function show () {
     }
     for (let i = 0; i < outputs.length; i++) {
         showElement(outputs[i]);
+    }
+    for(let i = 0; i < links.length; i++) {
+        showElement(links[i]);
     }
 
     ctx.restore();
