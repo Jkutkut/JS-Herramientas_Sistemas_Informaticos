@@ -6,7 +6,7 @@ class LogicLink {
     }
 
     get shape() {
-        let inP = this.input.pos;
+        let inP = this.input.getOUT_location(0);
         let shapes = {
             lines: [
 
@@ -17,7 +17,9 @@ class LogicLink {
         };
 
         for (let i = 0; i < this.outputs.length; i++) {
-            shapes.lines.push()
+            shapes.lines.push([inP, this.outputs[i].getIN_location(0)]);
         }
+
+        return shapes;
     }
 }
