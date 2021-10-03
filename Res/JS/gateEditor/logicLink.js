@@ -1,23 +1,24 @@
 class LogicLink {
     constructor(input, ...outputs) {
+        input.connectOutput(this);
         this.input = input;
 
-        this.outputs = outputs;
+        this.outputs = [];
+        for (let i = 0; i < outputs.length; i+=2) {
+            outputs[i].connectInput(this, outputs[i + 1]);
+            this.outputs.push(outputs[i]);
+        }
     }
 
     get shape() {
-        let inP = this.input.getOUT_location(0);
+        let inP = this.input.getPortLocation(this);
         let shapes = {
-            lines: [
-
-            ],
-            arcs: [
-
-            ]
+            lines: [],
+            arcs: []
         };
 
         for (let i = 0; i < this.outputs.length; i++) {
-            shapes.lines.push([inP, this.outputs[i].getIN_location(0)]);
+            shapes.lines.push([inP, this.outputs[i].getPortLocation(this)]);
         }
 
         return shapes;
