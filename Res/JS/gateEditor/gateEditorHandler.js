@@ -4,6 +4,8 @@ var canvasOffset;
 
 
 var gates = [];
+var input = [];
+var output = [];
 
 window.onload = () => {
 
@@ -15,17 +17,10 @@ window.onload = () => {
     // Mouse control logic
     $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
 
-    gates.push(new LogicGateAND(100, 100));
-    gates.push(new LogicGateNAND(300, 100));
-    gates.push(new LogicGateNOR(100, 200));
-    gates.push(new LogicGateNOT(300, 200));
-    gates.push(new LogicGateOR(100, 300));
-    gates.push(new LogicGateXNOR(300, 300));
-    gates.push(new LogicGateXOR(100, 400));
-
-    gates.push(new LogicGateInput(500, 100));
-    gates.push(new LogicGateOutput(500, 200));
-
+    gates.push(new LogicGateInput(100, 100, 0));
+    gates.push(new LogicGateAND(200, 150));
+    gates.push(new LogicGateInput(100, 200, 1));
+    gates.push(new LogicGateOutput(320, 150, 0));
 
     show();
 }
@@ -102,6 +97,7 @@ function handleMouseMove(e) {
     }   
 }
 
+// Logic to add elements to canvas
 const addElement = {
     AND: () => {
         addGate(LogicGateAND);
@@ -125,16 +121,21 @@ const addElement = {
         addGate(LogicGateXOR);
     },
     input: () => {
-        addGate(LogicGateInput);
+        addInput();
     },
     output: () => {
-        addGate(LogicGateOutput);
+        addOutput();
     },
 
 }
 
 function addGate(obj) {
     gates.push(new obj(200, 100));
-
     show();
+}
+function addInput() {
+    input.push(new LogicGateInput(200, 100, input.length));
+}
+function addOutput() {
+    output.push(new LogicGateOutput(200, 100, output.length));
 }
