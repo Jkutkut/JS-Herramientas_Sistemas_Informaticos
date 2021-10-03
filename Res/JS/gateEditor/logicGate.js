@@ -224,7 +224,7 @@ const SHAPES = {
     }
 }
 
-class LogicGate {
+class LogicGateObject {
 
     static half_width = 1.8 * SHAPES_SIZE;
     static half_height = SHAPES_SIZE;
@@ -286,6 +286,11 @@ class LogicGate {
     moveToPoint(p) {
         this.moveTo(...p.pos);
     }
+}
+
+// Logic gates
+class LogicGate extends LogicGateObject {
+
 }
 
 class LogicGateAND extends LogicGate {
