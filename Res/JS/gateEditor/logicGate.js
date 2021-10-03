@@ -273,13 +273,62 @@ const SHAPES = {
             name: "A",
             lines: [
                 [
-                    new Point(-SHAPES_SIZE * 0.8, 0),
-                    new Point(-SHAPES_SIZE * 0.8, -SHAPES_SIZE * 0.8)
+                    new Point(0, -SHAPES_SIZE * 0.7),
+                    new Point(-SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(0, -SHAPES_SIZE * 0.7),
+                    new Point(SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.3, SHAPES_SIZE * 0.2),
+                    new Point(SHAPES_SIZE * 0.3, SHAPES_SIZE * 0.2)
+                ]
+            ],
+            arcs: []
+        },
+        {
+            name: "B",
+            lines: [
+                [
+                    new Point(-SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(-SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(0, -SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7),
+                    new Point(0, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, 0),
+                    new Point(0, 0)
                 ]
             ],
             arcs: [
-
+                [0, -SHAPES_SIZE * 0.35, SHAPES_SIZE * 0.35, -Math.PI / 2, Math.PI / 2],
+                [0, SHAPES_SIZE * 0.35, SHAPES_SIZE * 0.35, -Math.PI / 2, Math.PI / 2]
             ]
+        },
+        {
+            name: "F",
+            lines: [
+                [
+                    new Point(-SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(-SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, 0),
+                    new Point(SHAPES_SIZE * 0.2, 0)
+                ]
+            ],
+            arcs: []
         }
     ]
 }
@@ -411,13 +460,10 @@ class LogicGateXOR extends LogicGate {
 class LogicGateIO extends LogicGateObject {
     constructor(x, y, index) {
         super(x, y);
-        this._index = 0;
-        
-        console.log("h")
+        this._index = index;
+
         let body = this.bodyShape;
         let name = this.name;
-        console.log(body)
-        console.log(name)
 
         this._defaultShape = {
             lines: [...body.lines, ...name.lines],
