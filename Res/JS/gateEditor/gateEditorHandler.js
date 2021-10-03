@@ -156,8 +156,14 @@ function addGate(obj) {
     show();
 }
 function addInput() {
-    inputs.push(new LogicGateInput(200, 100, input.length));
+    if (inputs.length >= 2) return;
+
+    inputs.push(new LogicGateInput(200, 100, inputs.length));
+    show();
 }
 function addOutput() {
-    outputs.push(new LogicGateOutput(200, 100, output.length));
+    if (outputs.length >= 1) return;
+    
+    outputs.push(new LogicGateOutput(200, 100, outputs.length));
+    show();
 }
