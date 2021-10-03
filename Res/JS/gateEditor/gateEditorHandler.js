@@ -4,8 +4,8 @@ var canvasOffset;
 
 
 var gates = [];
-var input = [];
-var output = [];
+var inputs = [];
+var outputs = [];
 
 window.onload = () => {
 
@@ -17,10 +17,10 @@ window.onload = () => {
     // Mouse control logic
     $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
 
-    gates.push(new LogicGateInput(100, 100, 0));
+    inputs.push(new LogicGateInput(100, 100, 0));
+    inputs.push(new LogicGateInput(100, 200, 1));
     gates.push(new LogicGateAND(200, 150));
-    gates.push(new LogicGateInput(100, 200, 1));
-    gates.push(new LogicGateOutput(320, 150, 2));
+    outputs.push(new LogicGateOutput(320, 150, 2));
 
     show();
 }
@@ -33,8 +33,14 @@ function show () {
     ctx.strokeStyle = 'black'
     ctx.lineWidth = 3
 
+    for (let i = 0; i < inputs.length; i++) {
+        showElement(inputs[i]);
+    }
     for (let i = 0; i < gates.length; i++) {
         showElement(gates[i]);
+    }
+    for (let i = 0; i < outputs.length; i++) {
+        showElement(outputs[i]);
     }
 
     ctx.restore();
@@ -134,8 +140,8 @@ function addGate(obj) {
     show();
 }
 function addInput() {
-    input.push(new LogicGateInput(200, 100, input.length));
+    inputs.push(new LogicGateInput(200, 100, input.length));
 }
 function addOutput() {
-    output.push(new LogicGateOutput(200, 100, output.length));
+    outputs.push(new LogicGateOutput(200, 100, output.length));
 }
