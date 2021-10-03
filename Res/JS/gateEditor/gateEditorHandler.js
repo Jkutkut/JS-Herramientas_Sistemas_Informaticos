@@ -1,5 +1,6 @@
 var gateEditorCanvas;
 var ctx;
+var canvasOffset;
 
 
 var gates = [];
@@ -8,6 +9,11 @@ window.onload = () => {
 
     gateEditorCanvas = document.getElementById('gateEditor');
     ctx = gateEditorCanvas.getContext('2d');
+    let cOffset = $("#gateEditor").offset();
+    canvasOffset = new Point(cOffset.left, cOffset.top);
+
+    // Mouse control logic
+    $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
 
     gates.push(new LogicGateAND(100, 100));
     gates.push(new LogicGateNAND(300, 100));
@@ -21,10 +27,11 @@ window.onload = () => {
 }
 
 function show () {
+    ctx.clearRect(0, 0, gateEditorCanvas.width, gateEditorCanvas.height);
+
     ctx.save(); // save previous styles & set our current styles
     
-    ctx.strokeStyle = 'blue'
-    ctx.fillStyle = 'blue'
+    ctx.strokeStyle = 'black'
     ctx.lineWidth = 3
 
     for (let i = 0; i < gates.length; i++) {
@@ -53,4 +60,40 @@ function showElement(element) {
         ctx.stroke();
 
     }
+}
+
+
+// Control logic
+var draggingGate = null;
+var refreshingCanvas = null;
+
+function handleMouseDown(e) {
+    let mouse = new Point(
+        parseInt(e.clientX - canvasOffset.x),
+        parseInt(e.clientY - canvasOffset.y)
+    );
+  
+    for (let i = 0; i < gates.length; i++) {
+        if (gates[i].isPointInside(mouse)) {
+            draggingGate = gates[i];
+            refreshingCanvas = setInterval(show, 40);
+            break;
+        }
+    }
+}
+
+function handleMouseUp(e) {
+    draggingGate = null;
+    clearInterval(refreshingCanvas);
+}
+
+function handleMouseMove(e) {
+    if (draggingGate != null) {
+        let mouse = new Point(
+            parseInt(e.clientX - canvasOffset.x),
+            parseInt(e.clientY - canvasOffset.y)
+        );
+
+        draggingGate.moveToPoint(mouse);
+    }   
 }
