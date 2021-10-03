@@ -23,6 +23,10 @@ window.onload = () => {
     gates.push(new LogicGateXNOR(300, 300));
     gates.push(new LogicGateXOR(100, 400));
 
+    gates.push(new LogicGateInput(500, 100));
+    gates.push(new LogicGateOutput(500, 200));
+
+
     show();
 }
 
