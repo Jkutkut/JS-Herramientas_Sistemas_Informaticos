@@ -267,7 +267,21 @@ const SHAPES = {
             ]
         ],
         arcs: []
-    }
+    },
+    IO_NAMES: [
+        {
+            name: "A",
+            lines: [
+                [
+                    new Point(-SHAPES_SIZE * 0.8, 0),
+                    new Point(-SHAPES_SIZE * 0.8, -SHAPES_SIZE * 0.8)
+                ]
+            ],
+            arcs: [
+
+            ]
+        }
+    ]
 }
 
 class LogicGateObject {
@@ -301,6 +315,10 @@ class LogicGateObject {
             p.y >= this.pos.y - LogicGate.half_height &&
             p.y <= this.pos.y + LogicGate.half_height
         );
+    }
+
+    get defaultShape() {
+        return null;
     }
 
     // SETTERS
@@ -390,14 +408,65 @@ class LogicGateXOR extends LogicGate {
 
 // input and output
 
-class LogicGateInput extends LogicGateObject {
+class LogicGateIO extends LogicGateObject {
+    constructor(x, y, index) {
+        super(x, y);
+        this._index = 0;
+        
+        console.log("h")
+        let body = this.bodyShape;
+        let name = this.name;
+        console.log(body)
+        console.log(name)
+
+        this._defaultShape = {
+            lines: [...body.lines, ...name.lines],
+            arcs: [...body.arcs, ...name.arcs]
+        };
+
+        this.moveTo(x, y);
+    }
+
     get defaultShape() {
-        return SHAPES.INPUT;
+        if (this._defaultShape) {
+            return this._defaultShape;
+        }
+
+        return {lines: [], arcs: []};
+    }
+
+    get bodyShape() {
+        return null;
+    }
+
+    get name() {
+        return null;
+    }
+
+    get index() {
+        if (this._index) {
+            return this._index;
+        }
+        return 0;
     }
 }
 
-class LogicGateOutput extends LogicGateObject {
-    get defaultShape() {
+class LogicGateInput extends LogicGateIO {
+    get bodyShape() {
+        return SHAPES.INPUT;
+    }
+
+    get name() {
+        return SHAPES.IO_NAMES[this.index];
+    }
+}
+
+class LogicGateOutput extends LogicGateIO {
+    get bodyShape() {
         return SHAPES.OUTPUT;
+    }
+
+    get name() {
+        return SHAPES.IO_NAMES[this.index];
     }
 }
