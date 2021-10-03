@@ -12,7 +12,9 @@ class LogicGateObject {
 
         this._shapeOBJ = null;
 
-        this.moveTo(x, y)
+        this.moveTo(x, y);
+
+        this._IO_SIZE = {IN: 0, OUT: 0};
     }
 
     // Getters
@@ -48,6 +50,27 @@ class LogicGateObject {
      */
     get defaultShape() {
         return null;
+    }
+
+    getIN_location(index) {
+        if (index >= this.IO_SIZE.IN) {
+            throw new Error(`The object has ${this.IO_SIZE.IN} ports, but asked for the ${index}º.`);
+        }
+        return IO.INPUT[this.IO_SIZE.IN - 1][index].plus(this.pos);
+    }
+
+    getOUT_location(index) {
+        if (index >= this.IO_SIZE.OUT) {
+            throw new Error(`The object has ${this.IO_SIZE.OUT} ports, but asked for the ${index}º.`);
+        }
+        return IO.OUTPUT[this.IO_SIZE.OUT - 1][index].plus(this.pos);
+    }
+
+    /**
+     * The amount of In and Out ports of the current device.
+     */
+    get IO_SIZE() {
+        return this._IO_SIZE;
     }
 
     // SETTERS
@@ -90,12 +113,16 @@ class LogicGateObject {
 }
 
 // Logic gates
-
 /**
  * Class that works as a prototype to generate all logic gates.
  */
 class LogicGate extends LogicGateObject {
+    constructor (x, y) {
+        super(x, y);
 
+        this._IO_SIZE.IN = 2;
+        this.IO_SIZE.OUT = 1;
+    }
 }
 
 class LogicGateAND extends LogicGate {
