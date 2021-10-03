@@ -251,9 +251,9 @@ class LogicGate {
         
         return (
             p.x >= this.pos.x - LogicGate.half_width &&
-            p.x <= this.x + LogicGate.half_width &&
-            p.y >= this.y - LogicGate.half_height &&
-            p.y <= this.y + LogicGate.half_height
+            p.x <= this.pos.x + LogicGate.half_width &&
+            p.y >= this.pos.y - LogicGate.half_height &&
+            p.y <= this.pos.y + LogicGate.half_height
         );
     }
 
@@ -281,6 +281,10 @@ class LogicGate {
                 this._shapeOBJ.arcs[i][k] = this._shapeOBJ.arcs[i][k] + this.pos.pos[k];
             }
         }
+    }
+
+    moveToPoint(p) {
+        this.moveTo(...p.pos);
     }
 }
 
