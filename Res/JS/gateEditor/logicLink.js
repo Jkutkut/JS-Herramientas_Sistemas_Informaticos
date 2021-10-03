@@ -23,4 +23,8 @@ class LogicLink {
 
         return shapes;
     }
+
+    get from() {
+        return this.input;
+    }
 }

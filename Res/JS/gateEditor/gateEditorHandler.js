@@ -20,7 +20,7 @@ window.onload = () => {
 
     inputs.push(new LogicGateInput(100, 100, 0));
     inputs.push(new LogicGateInput(100, 200, 1));
-    gates.push(new LogicGateAND(200, 150));
+    gates.push(new LogicGateOR(200, 150));
     outputs.push(new LogicGateOutput(320, 150, 2));
 
     links.push(new LogicLink(inputs[0], gates[0], 0));
@@ -30,6 +30,7 @@ window.onload = () => {
     show();
 }
 
+// Representation
 function show () {
     ctx.clearRect(0, 0, gateEditorCanvas.width, gateEditorCanvas.height);
 
@@ -159,8 +160,8 @@ const addElement = {
 
 }
 
-function addGate(obj) {
-    gates.push(new obj(200, 100));
+function addGate(gate) {
+    gates.push(new gate(200, 100));
     show();
 }
 function addInput() {
@@ -174,4 +175,12 @@ function addOutput() {
     
     outputs.push(new LogicGateOutput(200, 100, outputs.length));
     show();
+}
+
+// Converters
+
+function getLogic(output=outputs[0]) {
+    let s = output.stringLogic;
+    // console.log(s);
+    return s;
 }

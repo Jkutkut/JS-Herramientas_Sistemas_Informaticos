@@ -22,6 +22,14 @@ class LogicGateObject {
     }
 
     // Getters
+    get stringName() {
+        return null;
+    }
+
+    get stringLogic() {
+        return "";
+    }
+
     /** 
      * @returns Position of the center of the object as a Point instance.
      */
@@ -155,11 +163,24 @@ class LogicGate extends LogicGateObject {
         this._IO_SIZE.IN = 2;
         this.IO_SIZE.OUT = 1;
     }
+
+    get stringLogic() {
+        console.log("Inside " + this.stringName);
+        let connectionLogicString = [];
+        for (let i = 0; i < this.IO_SIZE.IN; i++) {
+            connectionLogicString.push(this.IO.in[i].from.stringLogic);
+        }
+        return `${this.stringName}(${connectionLogicString.join(", ")})`;
+    }
 }
 
 class LogicGateAND extends LogicGate {
     get defaultShape() {
         return SHAPES.AND;
+    }
+
+    get stringName() {
+        return "AND";
     }
 }
 
@@ -167,11 +188,19 @@ class LogicGateNAND extends LogicGate {
     get defaultShape() {
         return SHAPES.NAND;
     }
+
+    get stringName() {
+        return "NAND";
+    }
 }
 
 class LogicGateNOR extends LogicGate {
     get defaultShape() {
         return SHAPES.NOR;
+    }
+
+    get stringName() {
+        return "NOR";
     }
 }
 
@@ -179,11 +208,19 @@ class LogicGateNOT extends LogicGate {
     get defaultShape() {
         return SHAPES.NOT;
     }
+
+    get stringName() {
+        return "NOT";
+    }
 }
 
 class LogicGateOR extends LogicGate {
     get defaultShape() {
         return SHAPES.OR;
+    }
+
+    get stringName() {
+        return "OR";
     }
 }
 
@@ -191,11 +228,19 @@ class LogicGateXNOR extends LogicGate {
     get defaultShape() {
         return SHAPES.XNOR;
     }
+
+    get stringName() {
+        return "XNOR";
+    }
 }
 
 class LogicGateXOR extends LogicGate {
     get defaultShape() {
         return SHAPES.XOR;
+    }
+
+    get stringName() {
+        return "XOR";
     }
 }
 
@@ -266,6 +311,14 @@ class LogicGateInput extends LogicGateIO {
         this._IO_SIZE = {IN: 0, OUT: 1};
     }
 
+    get stringLogic() {
+        return this.name.name;
+    }
+
+    get stringName() {
+        return this.name.name;
+    }
+
     get bodyShape() {
         return SHAPES.INPUT;
     }
@@ -280,6 +333,14 @@ class LogicGateOutput extends LogicGateIO {
         super(x, y, index);
 
         this._IO_SIZE = {IN: 1, OUT: 0};
+    }
+
+    get stringName() {
+        return this.name.name;
+    }
+
+    get stringLogic() {
+        return `${this.stringName} = ${this.IO.in[0].from.stringLogic}`;
     }
 
     get bodyShape() {
