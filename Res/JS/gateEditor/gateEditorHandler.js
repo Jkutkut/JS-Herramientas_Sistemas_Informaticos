@@ -44,28 +44,29 @@ function show () {
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 3;
 
-    for (let i = 0; i < inputs.length; i++) {
-        showElement(inputs[i]);
-    }
-    for (let i = 0; i < gates.length; i++) {
-        showElement(gates[i]);
+    showArray(inputs);
+    showArray(outputs);
+    showArray(gates);
 
-        for (let j = 0; j < gates[i].IO_SIZE.IN; j++) {
-            showElement(LogicLink.pointShape(gates[i].getIN_location(j)), true);
-        }
-
-        for (let j = 0; j < gates[i].IO_SIZE.OUT; j++) {
-            showElement(LogicLink.pointShape(gates[i].getOUT_location(j)), true);
-        }
-    }
-    for (let i = 0; i < outputs.length; i++) {
-        showElement(outputs[i]);
-    }
     for(let i = 0; i < links.length; i++) {
         showElement(links[i]);
     }
 
     ctx.restore();
+}
+
+function showArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        showElement(arr[i]);
+
+        for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+            showElement(pointShape(arr[i].getIN_location(j)), true);
+        }
+
+        for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
+            showElement(pointShape(arr[i].getOUT_location(j)), true);
+        }
+    }
 }
 
 function showElement(element, fill=false) {
@@ -80,7 +81,6 @@ function showElement(element, fill=false) {
 
     }
     
-
     for (let i = 0; i < shape.arcs.length; i++) {
         ctx.beginPath();
         ctx.arc(...shape.arcs[i]);
@@ -91,6 +91,15 @@ function showElement(element, fill=false) {
             ctx.stroke();
         }
     }
+}
+
+function pointShape(point) {
+    return {
+        shape: {
+            lines: [],
+            arcs: [[...point.pos, SHAPES_SIZE * 0.3, 0, Math.PI * 2]]
+        }
+    };
 }
 
 
