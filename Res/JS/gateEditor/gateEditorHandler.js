@@ -30,7 +30,6 @@ window.onload = () => {
 
     links.push(new LogicLink(inputs[0], gates[0], 0));
     links.push(new LogicLink(inputs[1], gates[0], 1));
-    links.push(new LogicLink(gates[0], outputs[0], 0));
 
     show();
 }
@@ -116,18 +115,11 @@ function handleMouseDown(e) {
     // Move objects
     let mouseInsideArray = (arr)=>{
         for (let i = 0; i < arr.length; i++) {
-            for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
-                if (arr[i].getIN_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
-                    // console.log(`Collision at index ${i}, port ${j}`);
-                    // links.push(new LogicLink(arr[i]))
-                    // draggingGate = 
-                    return true;
-                }
-            }
-
             for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
                 if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
-                    // console.log(`Collision at index ${i}, port ${j}`);
+                    links.push(new mouseLink(arr[i], mouse));
+                    draggingGate = mouse;
+                    refreshingCanvas = setInterval(show, 40);
                     return true;
                 }
             }
@@ -146,8 +138,40 @@ function handleMouseDown(e) {
 }
 
 function handleMouseUp(e) {
-    draggingGate = null;
+    if (draggingGate instanceof LogicGateObject) {
+        draggingGate = null;
+    }
+    else if (draggingGate instanceof Point){ // draggingGate is using a mouseLink!
+        // Check if connecting to something
+        let mouseInsideArray = (arr)=>{
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+                    if (arr[i].IO.in[j] == undefined &&
+                        arr[i].getIN_location(j).dist(draggingGate) < SHAPES_SIZE * 0.5) {
+                        console.log(`Collision at index ${i}, port ${j}`);
+                        return {obj: arr[i], port: j};
+                    }
+                }
+            }
+            return false;
+        };
+
+        let connection = mouseInsideArray(outputs) || mouseInsideArray(gates);
+        let newLink;
+        if (connection) {
+            let gate = links[links.length - 1].from;
+            newLink = new LogicLink(gate, connection.obj, connection.port);
+        }
+        
+        links.pop();
+        draggingGate = null;
+        if (newLink) {
+            links.push(newLink);
+        }
+    }
+
     clearInterval(refreshingCanvas);
+    show();
 }
 
 function handleMouseMove(e) {
