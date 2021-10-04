@@ -1,29 +1,18 @@
-class LogicLink {
-    constructor(input, ...outputs) {
+class LogicLinkPrototype {
+    constructor(input, output, port) {
         input.connectOutput(this);
         this.input = input;
 
-        this.outputs = [];
-        for (let i = 0; i < outputs.length; i+=2) {
-            outputs[i].connectInput(this, outputs[i + 1]);
-            this.outputs.push(outputs[i]);
-        }
+        this.output = output;
+        this.port = port;
     }
 
     get shape() {
-        let inP = this.fromPoint;
-        let shapes = {
-            lines: [],
+        let shape = {
+            lines: [[this.fromPoint, this.toPoint]],
             arcs: []
         };
-        
-        let ps = this.toPoints;
-
-        for (let i = 0; i < this.outputs.length; i++) {
-            shapes.lines.push([inP, ps[i]]);
-        }
-
-        return shapes;
+        return shape;
     }
 
     get from() {
@@ -31,18 +20,28 @@ class LogicLink {
     }
 
     get to() {
-        return this.outputs;
+        return this.output;
     }
 
     get fromPoint() {
         return this.input.getPortLocation(this);
     }
 
-    get toPoints() {
-        let points = [];
-        for (let i = 0; i < this.outputs.length; i++) {
-            points.push(this.outputs[i].getPortLocation(this));
-        }
-        return points;
+    get toPoint() {
+        return this.output.getPortLocation(this);
     }
 }
+
+class LogicLink extends LogicLinkPrototype {
+    constructor(input, output, port) {
+        super(input, output, port);
+        console.log(output);
+        output.connectInput(this, port);
+    }
+}
+
+// class mouseLink extends LogicLinkPrototype {
+//     constructor() {
+
+//     }
+// }
