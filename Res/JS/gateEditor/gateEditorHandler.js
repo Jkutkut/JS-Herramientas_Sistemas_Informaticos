@@ -25,7 +25,7 @@ window.onload = () => {
     // Create circuit.
     inputs.push(new LogicGateInput(100, 100, 0));
     inputs.push(new LogicGateInput(100, 200, 1));
-    gates.push(new LogicGateOR(200, 150));
+    gates.push(new LogicGateAND(200, 150));
     outputs.push(new LogicGateOutput(320, 150, 2));
 
     links.push(new LogicLink(inputs[0], gates[0], 0));
@@ -186,13 +186,32 @@ function addOutput() {
 
 function getLogic(output=outputs[0]) {
     let s = output.stringLogic.substring(4);
+    let q = processLogic(s);
 
-    let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(s);
-    console.log(s);
-    console.log(reg);
-    console.log(reg[1], reg[2], reg[3]);
+    // console.log(q);
 
-    updateTruthTable([0, 1, 1, 1]);
+    let logicTable = [];
+    for (let i = 0; i < 2; i++) {
+        let A = i == 1;
+        for (let j = 0; j < 2; j++) {
+            let B = j == 1;
+            logicTable[i * 2 + j] = eval(q);
+        }
+    }
+
+    updateTruthTable(logicTable);
+}
+
+
+function processLogic(str) {
+    if (/^[A-Z]$/.test(str)) {
+        return str;
+    }
+
+    let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(str);
+
+    const S = OPERATION_CONVERTER[reg[1]];
+    return `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
 }
 
 
@@ -200,7 +219,6 @@ function updateTruthTable(result) {
     let body = $($("#truthTable").children()[1]).children();
     for (let i = 0; i < result.length; i++) {
         let o = $($($(body[i]).children()[2]).children());
-        o.attr("checked", result[i] == 1);
-        // console.log(o);
+        o.attr("checked", result[i]);
     }
 }

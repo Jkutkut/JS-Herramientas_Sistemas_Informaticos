@@ -349,3 +349,36 @@ const IO = {
         ]
     ]
 }
+
+const OPERATION_CONVERTER = {
+    AND: {
+        PRE: "(",
+        MID: "&&",
+        POS: ")"
+    },
+    NAND: {
+        PRE: "!(",
+        MID: "&&",
+        POS: ")"
+    },
+    NOR: {
+        PRE: "!(",
+        MID: "||",
+        POS: ")"
+    },
+    OR: {
+        PRE: "(",
+        MID: "||",
+        POS: ")"
+    },
+    XNOR: {
+        PRE: "(",
+        MID: "==",
+        POS: ")"
+    },
+    XOR: {
+        PRE: "(",
+        MID: "!=",
+        POS: ")"
+    }
+}
