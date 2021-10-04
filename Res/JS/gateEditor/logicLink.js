@@ -11,14 +11,16 @@ class LogicLink {
     }
 
     get shape() {
-        let inP = this.input.getPortLocation(this);
+        let inP = this.fromPoint;
         let shapes = {
             lines: [],
             arcs: []
         };
+        
+        let ps = this.toPoints;
 
         for (let i = 0; i < this.outputs.length; i++) {
-            shapes.lines.push([inP, this.outputs[i].getPortLocation(this)]);
+            shapes.lines.push([inP, ps[i]]);
         }
 
         return shapes;
@@ -26,5 +28,21 @@ class LogicLink {
 
     get from() {
         return this.input;
+    }
+
+    get to() {
+        return this.outputs;
+    }
+
+    get fromPoint() {
+        return this.input.getPortLocation(this);
+    }
+
+    get toPoints() {
+        let points = [];
+        for (let i = 0; i < this.outputs.length; i++) {
+            points.push(this.outputs[i].getPortLocation(this));
+        }
+        return points;
     }
 }
