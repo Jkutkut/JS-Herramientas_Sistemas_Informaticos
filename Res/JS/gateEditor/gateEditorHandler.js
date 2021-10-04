@@ -112,30 +112,37 @@ function handleMouseDown(e) {
         parseInt(e.clientX - canvasOffset.x),
         parseInt(e.clientY - canvasOffset.y)
     );
-  
-    for (let i = 0; i < gates.length; i++) {
-        if (gates[i].isPointInside(mouse)) {
-            draggingGate = gates[i];
-            refreshingCanvas = setInterval(show, 40);
-            break;
-        }
-    }
+    
+    // Move objects
+    let mouseInsideArray = (arr)=>{
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+                if (arr[i].getIN_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
+                    // console.log(`Collision at index ${i}, port ${j}`);
+                    // links.push(new LogicLink(arr[i]))
+                    // draggingGate = 
+                    return true;
+                }
+            }
 
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].isPointInside(mouse)) {
-            draggingGate = inputs[i];
-            refreshingCanvas = setInterval(show, 40);
-            break;
-        }
-    }
+            for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
+                if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
+                    // console.log(`Collision at index ${i}, port ${j}`);
+                    return true;
+                }
+            }
 
-    for (let i = 0; i < outputs.length; i++) {
-        if (outputs[i].isPointInside(mouse)) {
-            draggingGate = outputs[i];
-            refreshingCanvas = setInterval(show, 40);
-            break;
+            if (arr[i].isPointInside(mouse)) {
+                draggingGate = arr[i];
+                refreshingCanvas = setInterval(show, 40);
+                return true;
+            }
         }
-    }
+        return false;
+    };
+    if (mouseInsideArray(gates)) return;
+    if (mouseInsideArray(inputs)) return;
+    if (mouseInsideArray(outputs)) return;
 }
 
 function handleMouseUp(e) {
