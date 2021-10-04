@@ -10,6 +10,10 @@ var links = [];
 
 window.onload = () => {
 
+    // Setup truth table
+    $(".staticCheckbox").on("click", ()=>{return false;});
+
+    // Set up canvas
     gateEditorCanvas = document.getElementById('gateEditor');
     ctx = gateEditorCanvas.getContext('2d');
     let cOffset = $("#gateEditor").offset();
@@ -18,6 +22,7 @@ window.onload = () => {
     // Mouse control logic
     $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
 
+    // Create circuit.
     inputs.push(new LogicGateInput(100, 100, 0));
     inputs.push(new LogicGateInput(100, 200, 1));
     gates.push(new LogicGateOR(200, 150));
@@ -180,7 +185,22 @@ function addOutput() {
 // Converters
 
 function getLogic(output=outputs[0]) {
-    let s = output.stringLogic;
-    // console.log(s);
-    return s;
+    let s = output.stringLogic.substring(4);
+
+    let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(s);
+    console.log(s);
+    console.log(reg);
+    console.log(reg[1], reg[2], reg[3]);
+
+    updateTruthTable([0, 1, 1, 1]);
+}
+
+
+function updateTruthTable(result) {
+    let body = $($("#truthTable").children()[1]).children();
+    for (let i = 0; i < result.length; i++) {
+        let o = $($($(body[i]).children()[2]).children());
+        o.attr("checked", result[i] == 1);
+        // console.log(o);
+    }
 }

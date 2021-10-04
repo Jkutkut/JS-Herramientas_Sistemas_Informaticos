@@ -75,52 +75,77 @@
 					</div>
 				</div>
 
-				<!-- Base converter module -->
-				<div class="moduleContainer">
-					<div class="moduleTool">
-						<h2>Base converter</h2>
-						<div class="inputField">
-							<label for="numberBaseConverter">Number: </label>
-							<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
-						</div>
-
-						<div class="moduleTool horizontalAlign">
-							<div class="inputField" style="--w: 40%;">
-								<label for="baseFrom">Base from: </label>
-								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
+				<div class="verticalModulesContainer">
+					<!-- Base converter module -->
+					<div class="moduleContainer">
+						<div class="moduleTool">
+							<h2>Base converter</h2>
+							<div class="inputField">
+								<label for="numberBaseConverter">Number: </label>
+								<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
 							</div>
-							<div class="inputField" style="--w: 40%;">
-								<label for="baseTo">Base to:</label>
-								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
+
+							<div class="moduleTool horizontalAlign">
+								<div class="inputField" style="--w: 40%;">
+									<label for="baseFrom">Base from: </label>
+									<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
+								</div>
+								<div class="inputField" style="--w: 40%;">
+									<label for="baseTo">Base to:</label>
+									<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
+								</div>
+							</div>
+
+							<div class="inputField">
+								<label for="baseConverterOutput">Result:</label>
+								<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
+								<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
 							</div>
 						</div>
+					</div>
+					
+					<div class="moduleContainer">
+						<div class="moduleTool">
+							<table id="truthTable">
+								<thead>
+									<th>A</th>
+									<th>B</th>
+									<th>F</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+									</tr>
+									<tr>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+										<td><input class="staticCheckbox" type="checkbox" checked/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+									</tr>
+									<tr>
+										<td><input class="staticCheckbox" type="checkbox"checked/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+									</tr>
+									<tr>
+										<td><input class="staticCheckbox" type="checkbox" checked/></td>
+										<td><input class="staticCheckbox" type="checkbox" checked/></td>
+										<td><input class="staticCheckbox" type="checkbox"/></td>
+									</tr>
+								</tbody>
+							</table>
 
-						<div class="inputField">
-							<label for="baseConverterOutput">Result:</label>
-							<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
-							<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
+							<div style="margin-top: 5px;">
+								<input type="button" onclick="getLogic();" value="Update truth table">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- <div class="verticalModulesContainer">
-				<div class="moduleContainer">
-					<div class="moduleTool">
-						<table id="truthTable">
-							<thead>
-								<th>A</th>
-								<th>F</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="checkbox"/></td>
-									<td><input type="checkbox"/></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div> -->
+			<div class="verticalModulesContainer">
+				
+			</div>
 		</div>
 		<div id="gateEditorFullContainer" class="horizontalModulesContainer">
 			<div id="gateEditorList" style="--w: 200px;">
