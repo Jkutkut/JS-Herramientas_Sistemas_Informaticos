@@ -45,4 +45,8 @@ class LogicLink {
         }
         return points;
     }
+
+    static pointShape(point) {
+        return {shape: {lines: [], arcs: [[...point.pos, SHAPES_SIZE * 0.3, 0, Math.PI * 2]]}};
+    }
 }
