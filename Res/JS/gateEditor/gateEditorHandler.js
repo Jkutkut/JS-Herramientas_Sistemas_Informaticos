@@ -76,8 +76,12 @@ function showElement(element) {
     for (let i = 0; i < shape.arcs.length; i++) {
         ctx.beginPath();
         ctx.arc(...shape.arcs[i]);
+        if (fill) {
+            ctx.fill();
+        }
+        else {
         ctx.stroke();
-
+        }
     }
 }
 
