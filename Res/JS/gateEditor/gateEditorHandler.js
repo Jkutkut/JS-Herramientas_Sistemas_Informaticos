@@ -41,14 +41,22 @@ function show () {
 
     ctx.save(); // save previous styles & set our current styles
     
-    ctx.strokeStyle = 'black'
-    ctx.lineWidth = 3
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 3;
 
     for (let i = 0; i < inputs.length; i++) {
         showElement(inputs[i]);
     }
     for (let i = 0; i < gates.length; i++) {
         showElement(gates[i]);
+
+        for (let j = 0; j < gates[i].IO_SIZE.IN; j++) {
+            showElement(LogicLink.pointShape(gates[i].getIN_location(j)), true);
+        }
+
+        for (let j = 0; j < gates[i].IO_SIZE.OUT; j++) {
+            showElement(LogicLink.pointShape(gates[i].getOUT_location(j)), true);
+        }
     }
     for (let i = 0; i < outputs.length; i++) {
         showElement(outputs[i]);
@@ -60,7 +68,7 @@ function show () {
     ctx.restore();
 }
 
-function showElement(element) {
+function showElement(element, fill=false) {
     let shape = element.shape;
 
     for (let i = 0; i < shape.lines.length; i++) {
@@ -80,7 +88,7 @@ function showElement(element) {
             ctx.fill();
         }
         else {
-        ctx.stroke();
+            ctx.stroke();
         }
     }
 }
