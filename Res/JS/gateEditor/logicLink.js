@@ -35,13 +35,16 @@ class LogicLinkPrototype {
 class LogicLink extends LogicLinkPrototype {
     constructor(input, output, port) {
         super(input, output, port);
-        console.log(output);
         output.connectInput(this, port);
     }
 }
 
-// class mouseLink extends LogicLinkPrototype {
-//     constructor() {
+class mouseLink extends LogicLinkPrototype {
+    constructor(input, output) {
+        super(input, output);
+    }
 
-//     }
-// }
+    get toPoint() {
+        return this.output;
+    }
+}
