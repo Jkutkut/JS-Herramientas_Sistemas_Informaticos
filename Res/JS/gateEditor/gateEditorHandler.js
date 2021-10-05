@@ -27,6 +27,7 @@ window.onload = () => {
     inputs.push(new LogicGateInput(100, 400, 1));
     outputs.push(new LogicGateOutput(600, 250, 2));
 
+    updateTruthTableShape();
     show();
 }
 
@@ -222,12 +223,14 @@ function addInput() {
     if (inputs.length >= 2) return;
 
     inputs.push(new LogicGateInput(200, 100, inputs.length));
+    updateTruthTableShape();
     show();
 }
 function addOutput() {
     if (outputs.length >= 1) return;
     
     outputs.push(new LogicGateOutput(200, 100, outputs.length));
+    updateTruthTableShape();
     show();
 }
 
@@ -281,7 +284,7 @@ function processLogic(str) {
 
     input1 = str.substring(0, i);
     input2 = str.substring(i + 2, str.length - 1);
-    
+
     const S = OPERATION_CONVERTER[operation];
     return `${S.PRE} ${processLogic(input1)} ${S.MID} ${processLogic(input2)} ${S.POS}`;
 }
