@@ -222,11 +222,11 @@
 			</div>
 		</div>
 		
-		<div class="horizontalModulesContainer">
-			<div class="horizontalModulesContainer">
+		<div class="horizontalContainer">
+			<div class="horizontalContainer">
 				<!-- ASCII-text-binary converter -->
-				<div class="moduleContainer">
-					<div class="moduleTool">
+				<div class="verticalContainer moduleContainer roundedCorners">
+					<div class="moduleTool centerContent">
 						<h2>ASCII code to binary</h2>
 						<div class="inputField">
 							<label for="ascii2binaryInput">Content: </label>
@@ -245,7 +245,7 @@
 						</div>
 					</div>
 
-					<div class="moduleTool">
+					<div class="moduleTool centerContent">
 						<h2>Binary to ASCII code</h2>
 						<div class="inputField">
 							<label for="binary2asciiInput">Binary: </label>
@@ -265,17 +265,17 @@
 					</div>
 				</div>
 
-				<div class="verticalModulesContainer">
+				<div class="verticalModulesContainer moduleContainer roundedCorners">
 					<!-- Base converter module -->
-					<div class="moduleContainer">
-						<div class="moduleTool">
+					<div class="moduleTool centerContent" style="background: red;">
+						<div class="moduleTool centerContent">
 							<h2>Base converter</h2>
 							<div class="inputField">
 								<label for="numberBaseConverter">Number: </label>
 								<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
 							</div>
 
-							<div class="moduleTool horizontalAlign">
+							<div class="horizontalContainer moduleTool">
 								<div class="inputField" style="--w: 40%;">
 									<label for="baseFrom">Base from: </label>
 									<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
