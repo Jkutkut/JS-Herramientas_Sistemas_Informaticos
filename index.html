@@ -35,8 +35,9 @@
 	</head>
 	<body>
 		<!-- Logic gate Editor -->
-		<div class="horizontalModulesContainer" style="background: var(--dark_background);">
-			<div id="" class="horizontalModulesContainer gateEditorFullContainer">
+		<div class="horizontalContainer" style="width: 1230px; background: var(--dark_background);">
+			<div id="" class="horizontalContainer gateEditorFullContainer">
+				<!-- Elements list -->
 				<div id="gateEditorList" style="--w: 200px;">
 					<h3>Logic Gates:</h3>
 					<img src="Res/img/logicGates/logicGateAND.png" alt="AND" width="80" height="80" onclick="addElement.AND()">
@@ -52,14 +53,15 @@
 					<h3>Output</h3>
 					<img src="Res/img/logicGates/output.png" alt="Output" width="80" height="80" onclick="addElement.output()">
 				</div>
+				<!-- Canvas -->
 				<div id="gateEditorContainer">
 					<canvas id="gateEditor" width="800px" height="500px"></canvas>
 				</div>
 			</div>
 
-			<div class="moduleContainer" style="--bg: blue; --w: 400px; --h: 100%;">
+			<div id="truthTableContainer" class="verticalContainer moduleContainer roundedCorners">
 				<!-- Truth Table -->
-				<table id="truthTable">
+				<table>
 					<thead>
 						<th>A</th>
 						<th>B</th>
@@ -217,7 +219,7 @@
 					</tbody>
 				</table>
 
-				<div style="margin-top: 5px;">
+				<div class="centerContent" style="margin-top: 5px;">
 					<input type="button" onclick="getLogic();" value="Update truth table">
 				</div>
 			</div>

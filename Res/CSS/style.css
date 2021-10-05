@@ -75,9 +75,19 @@ h2 {
 }
 
 /* Truth table */
+#truthTableContainer {
+    --w: 400px;
+    --h: 100%;
+    --bg: var(--background);
+
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
 table {
     width: 90%;
-    --bg: yellowgreen;
     background: var(--bg);
     text-align: center;
 }
@@ -86,16 +96,21 @@ th {
     border-bottom: 2px solid black;
 }
 
-td {
+td:nth-child(5), th:nth-child(5) {
+    border-left: 2px solid black;
+}
+
+td, th {
     border-right: 2px solid black;
 }
-td:last-of-type {
+
+td:last-of-type, th:last-of-type {
     border-right: none;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: var(--bg);
-    filter: brightness(90%);
+    filter: brightness(85%);
 }
 
 
@@ -110,13 +125,15 @@ tr:nth-child(even){
 }
 
 #gateEditorList {
+    display: block;
+    background: var(--gateEditorBG);
+
     width: var(--w, 400px);
     height: 100%;
     
     overflow-x: hidden;
     overflow-y: auto;
     
-    background: var(--gateEditorBG);
     padding-left: 10px;
 }
 
