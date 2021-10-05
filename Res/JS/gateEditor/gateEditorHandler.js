@@ -281,17 +281,8 @@ function processLogic(str) {
 
     input1 = str.substring(0, i);
     input2 = str.substring(i + 2, str.length - 1);
-
-    // console.log(operation + "|" + input1 + "|" + input2);
-
-    // console.log(operation)
-
-    // let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(str);
-
-    // console.log(reg, str);
+    
     const S = OPERATION_CONVERTER[operation];
-    // let out =  `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
-    // console.log(`Current: ${out}`)
     return `${S.PRE} ${processLogic(input1)} ${S.MID} ${processLogic(input2)} ${S.POS}`;
 }
 
