@@ -58,6 +58,7 @@
 			</div>
 
 			<div class="moduleContainer" style="--bg: blue; --w: 400px; --h: 100%;">
+				<!-- Truth Table -->
 				<table id="truthTable">
 					<thead>
 						<th>A</th>
@@ -265,39 +266,39 @@
 					</div>
 				</div>
 
-				<div class="verticalModulesContainer moduleContainer roundedCorners">
+				<div class="verticalContainer moduleContainer roundedCorners">
 					<!-- Base converter module -->
-					<div class="moduleTool centerContent" style="background: red;">
-						<div class="moduleTool centerContent">
-							<h2>Base converter</h2>
-							<div class="inputField">
-								<label for="numberBaseConverter">Number: </label>
-								<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
-							</div>
+					<div class="moduleTool centerContent">
+						<h2>Base converter</h2>
+						<div class="inputField">
+							<label for="numberBaseConverter">Number: </label>
+							<input type="text" class="textInput" id="baseConverterInput" oninput="baseConverterUpdate()">
+						</div>
 
-							<div class="horizontalContainer moduleTool">
-								<div class="inputField" style="--w: 40%;">
-									<label for="baseFrom">Base from: </label>
-									<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
-								</div>
-								<div class="inputField" style="--w: 40%;">
-									<label for="baseTo">Base to:</label>
-									<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
-								</div>
+						<div class="horizontalContainer moduleTool" style="--flex-dir: row">
+							<div class="inputField" style="--w: 40%;">
+								<label for="baseFrom">Base from: </label>
+								<input type="number" name="baseFrom" id="baseFrom" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="10">
 							</div>
-
-							<div class="inputField">
-								<label for="baseConverterOutput">Result:</label>
-								<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
-								<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
+							<div class="inputField" style="--w: 40%;">
+								<label for="baseTo">Base to:</label>
+								<input type="number" name="baseTo" id="baseTo" class="numberContainer" pattern="\d+" onchange="baseConverterUpdate()" value="2">
 							</div>
 						</div>
+
+						<div class="inputField">
+							<label for="baseConverterOutput">Result:</label>
+							<input type="text" class="textInput" id="baseConverterOutput" readonly="readonly">
+							<input type="button" value="Copy" onclick="copyToClipboard('baseConverterOutput')">
+						</div>
+					</div>
+
+					<div class="moduleTool centerContent">
+						<h2>Color picker</h2>
+						<h2>RGB</h2>
 					</div>
 					
 				</div>
-			</div>
-			<div class="verticalModulesContainer">
-				
 			</div>
 		</div>
 	</body>
