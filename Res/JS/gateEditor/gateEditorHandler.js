@@ -35,6 +35,7 @@ window.onload = () => {
 }
 
 // Representation
+
 function show () {
     ctx.clearRect(0, 0, gateEditorCanvas.width, gateEditorCanvas.height);
 
@@ -254,7 +255,6 @@ function getLogic(output=outputs[0]) {
     updateTruthTable(logicTable);
 }
 
-
 function processLogic(str) {
     if (/^[A-Z]$/.test(str)) {
         return str;
@@ -266,11 +266,49 @@ function processLogic(str) {
     return `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
 }
 
+function updateTruthTableShape(inL, outputs) {
+    /* 
+    
+    n = 1: 0, 8
+    n = 2: 0, 4, 8, 12
+    n = 3: 0, 2, 4, 6, 8, 10, 12, 14
+    n = 4: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+
+    */
+    if (inL < 1 || inL > 4) {
+        throw new Error("inL must be between 1 and 4");
+    }
+
+    let increment = (2<<(3 - inL));
+    if (inL == 4) {
+        increment = 1;
+    }
+
+    $("tr").css("display", "none");
+    $($("tr")[0]).css("display", "table-row");
+
+    for (let s = 0; s < 16; s+=increment) {
+        $($("tr")[s + 1]).css("display", "table-row");
+    }
+    
+    // $("th").css("display", "table-cell");
+    // $("td").css("display", "table-cell");
+    // for (let i = inputs.length; i < 4; i++) {
+    //     $($("th")[i]).css("display", "none");
+    //     $(`td:nth-child(${i})`).css("display", "none");
+    // }
+
+    // for (let i = outputs.length + 4; i < 7; i++) {
+    //     $($("th")[i]).css("display", "none");
+    //     $(`td:nth-child(${i})`).css("display", "none");
+    // }
+}
 
 function updateTruthTable(result) {
-    let body = $($("#truthTable").children()[1]).children();
-    for (let i = 0; i < result.length; i++) {
-        let o = $($($(body[i]).children()[2]).children());
-        o.attr("checked", result[i]);
-    }
+    
+    // let body = $($("#truthTable").children()[1]).children();
+    // for (let i = 0; i < result.length; i++) {
+    //     let o = $($($(body[i]).children()[2]).children());
+    //     o.attr("checked", result[i]);
+    // }
 }
