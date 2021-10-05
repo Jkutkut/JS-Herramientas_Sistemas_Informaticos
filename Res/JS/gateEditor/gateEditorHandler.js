@@ -30,6 +30,7 @@ window.onload = () => {
 
     links.push(new LogicLink(inputs[0], gates[0], 0));
     links.push(new LogicLink(inputs[1], gates[0], 1));
+    links.push(new LogicLink(gates[0], outputs[0], 0));
 
     show();
 }
@@ -252,7 +253,8 @@ function getLogic(output=outputs[0]) {
         }
     }
 
-    updateTruthTable(logicTable);
+    updateTruthTableShape(inputs.length, outputs.length);
+    updateTruthTable(logicTable, inputs.length, outputs.length);
 }
 
 function processLogic(str) {
@@ -295,19 +297,27 @@ function updateTruthTableShape(inL, outL) {
     $("th").css("display", "table-cell");
     $("td").css("display", "table-cell");
     for (let i = inL; i < 4; i++) {
-        console.log(i);
         $($("th")[i]).css("display", "none");
         $(`td:nth-child(${i+1})`).css("display", "none");
     }
 
     for (let i = outL + 4; i < 7; i++) {
         $($("th")[i]).css("display", "none");
-        $(`td:nth-child(${i})`).css("display", "none");
+        $(`td:nth-child(${i+1})`).css("display", "none");
     }
 }
 
-function updateTruthTable(result) {
+function updateTruthTable(result, inL, outL) {
+
+    let increment = (2<<(3 - inL));
+    if (inL == 4) {
+        increment = 1;
+    }
     
+    for (let s = 0, i = 0; s < 16; s+=increment, i++) {
+        console.log()
+        // $($($($("tr")[s + 1]).children()[6]).children()[0]).css("checked", result[i]);
+    }
     // let body = $($("#truthTable").children()[1]).children();
     // for (let i = 0; i < result.length; i++) {
     //     let o = $($($(body[i]).children()[2]).children());
