@@ -242,8 +242,6 @@ function getLogic(output=outputs[0]) {
     let s = output.stringLogic.substring(4);
     let q = processLogic(s);
 
-    // console.log(q);
-
     let logicTable = [];
     for (let i = 0; i < 2; i++) {
         let A = i == 1;
@@ -253,8 +251,15 @@ function getLogic(output=outputs[0]) {
         }
     }
 
-    updateTruthTableShape(inputs.length, outputs.length);
-    updateTruthTable(logicTable, inputs.length, outputs.length);
+    updateTruthTableShape();
+
+    let increment = (2<<(3 - inputs.length));
+    if (inputs.length == 4) {
+        increment = 1;
+    }
+    for (let s = 0, i = 0; s < 16; s+=increment, i++) {
+        $($($($("tr")[s + 1]).children()[4]).children()[0]).attr("checked", logicTable[i]);
+    }
 }
 
 function processLogic(str) {
@@ -268,22 +273,16 @@ function processLogic(str) {
     return `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
 }
 
-function updateTruthTableShape(inL, outL) {
+function updateTruthTableShape() {
     /* 
         n = 1: 0, 8
         n = 2: 0, 4, 8, 12
         n = 3: 0, 2, 4, 6, 8, 10, 12, 14
         n = 4: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
     */
-    if (inL < 1 || inL > 4) {
-        throw new Error("inL must be between 1 and 4.");
-    }
-    if (outL < 1 || outL > 3) {
-        throw new Error("outL must be between 1 and 3.");
-    }
 
-    let increment = (2<<(3 - inL));
-    if (inL == 4) {
+    let increment = (2<<(3 - inputs.length));
+    if (inputs.length == 4) {
         increment = 1;
     }
 
@@ -296,31 +295,13 @@ function updateTruthTableShape(inL, outL) {
 
     $("th").css("display", "table-cell");
     $("td").css("display", "table-cell");
-    for (let i = inL; i < 4; i++) {
+    for (let i = inputs.length; i < 4; i++) {
         $($("th")[i]).css("display", "none");
         $(`td:nth-child(${i+1})`).css("display", "none");
     }
 
-    for (let i = outL + 4; i < 7; i++) {
+    for (let i = outputs.length + 4; i < 7; i++) {
         $($("th")[i]).css("display", "none");
         $(`td:nth-child(${i+1})`).css("display", "none");
     }
-}
-
-function updateTruthTable(result, inL, outL) {
-
-    let increment = (2<<(3 - inL));
-    if (inL == 4) {
-        increment = 1;
-    }
-    
-    for (let s = 0, i = 0; s < 16; s+=increment, i++) {
-        console.log()
-        // $($($($("tr")[s + 1]).children()[6]).children()[0]).css("checked", result[i]);
-    }
-    // let body = $($("#truthTable").children()[1]).children();
-    // for (let i = 0; i < result.length; i++) {
-    //     let o = $($($(body[i]).children()[2]).children());
-    //     o.attr("checked", result[i]);
-    // }
 }
