@@ -24,13 +24,8 @@ window.onload = () => {
 
     // Create circuit.
     inputs.push(new LogicGateInput(100, 100, 0));
-    inputs.push(new LogicGateInput(100, 200, 1));
-    gates.push(new LogicGateAND(200, 150));
-    outputs.push(new LogicGateOutput(320, 150, 2));
-
-    links.push(new LogicLink(inputs[0], gates[0], 0));
-    links.push(new LogicLink(inputs[1], gates[0], 1));
-    links.push(new LogicLink(gates[0], outputs[0], 0));
+    inputs.push(new LogicGateInput(100, 400, 1));
+    outputs.push(new LogicGateOutput(600, 250, 2));
 
     show();
 }
@@ -267,10 +262,37 @@ function processLogic(str) {
         return str;
     }
 
-    let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(str);
+    let operation, input1, input2;
 
-    const S = OPERATION_CONVERTER[reg[1]];
-    return `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
+    let i = 1;
+    while(str[++i] != "(");
+
+    operation = str.substring(0, i);
+    str = str.substring(i + 1);
+
+    let depth = 0;
+    i = 0;
+    while (true) {
+        if (str[i] == "," && depth == 0) break
+        else if (str[i] == "(") depth++;
+        else if (str[i] == ")") depth--;
+        i++;
+    }
+
+    input1 = str.substring(0, i);
+    input2 = str.substring(i + 2, str.length - 1);
+
+    // console.log(operation + "|" + input1 + "|" + input2);
+
+    // console.log(operation)
+
+    // let reg = /^([A-Z]+)\((.+), (.+)\)$/.exec(str);
+
+    // console.log(reg, str);
+    const S = OPERATION_CONVERTER[operation];
+    // let out =  `${S.PRE} ${processLogic(reg[2])} ${S.MID} ${processLogic(reg[3])} ${S.POS}`;
+    // console.log(`Current: ${out}`)
+    return `${S.PRE} ${processLogic(input1)} ${S.MID} ${processLogic(input2)} ${S.POS}`;
 }
 
 function updateTruthTableShape() {
