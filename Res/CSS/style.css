@@ -44,7 +44,7 @@ h2 {
 }
 
 .moduleTool {
-    flex-direction: column;
+    flex-direction: var(--flex-dir, column);
     margin-top: 10px;
     margin-bottom: 10px;
     background: var(--bg, none);
