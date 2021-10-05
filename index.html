@@ -34,6 +34,194 @@
 
 	</head>
 	<body>
+		<!-- Logic gate Editor -->
+		<div class="horizontalModulesContainer" style="background: var(--dark_background);">
+			<div id="" class="horizontalModulesContainer gateEditorFullContainer">
+				<div id="gateEditorList" style="--w: 200px;">
+					<h3>Logic Gates:</h3>
+					<img src="Res/img/logicGates/logicGateAND.png" alt="AND" width="80" height="80" onclick="addElement.AND()">
+					<img src="Res/img/logicGates/logicGateNAND.png" alt="NAND" width="80" height="80" onclick="addElement.NAND()">
+					<img src="Res/img/logicGates/logicGateNOR.png" alt="NOR" width="80" height="80" onclick="addElement.NOR()">
+					<img src="Res/img/logicGates/logicGateNOT.png" alt="NOT" width="80" height="80" onclick="addElement.NOT()">
+					<img src="Res/img/logicGates/logicGateOR.png" alt="OR" width="80" height="80" onclick="addElement.OR()">
+					<img src="Res/img/logicGates/logicGateXNOR.png" alt="XNOR" width="80" height="80" onclick="addElement.XNOR()">
+					<img src="Res/img/logicGates/logicGateXOR.png" alt="XOR" width="80" height="80" onclick="addElement.XOR()">
+
+					<h3>Input</h3>
+					<img src="Res/img/logicGates/input.png" alt="Input" width="80" height="80" onclick="addElement.input()">
+					<h3>Output</h3>
+					<img src="Res/img/logicGates/output.png" alt="Output" width="80" height="80" onclick="addElement.output()">
+				</div>
+				<div id="gateEditorContainer">
+					<canvas id="gateEditor" width="800px" height="500px"></canvas>
+				</div>
+			</div>
+
+			<div class="moduleContainer" style="--bg: blue; --w: 400px; --h: 100%;">
+				<table id="truthTable">
+					<thead>
+						<th>A</th>
+						<th>B</th>
+						<th>C</th>
+						<th>D</th>
+						<th>F</th>
+						<th>G</th>
+						<th>H</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+						<tr>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox" checked/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+							<td><input class="staticCheckbox" type="checkbox"/></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div style="margin-top: 5px;">
+					<input type="button" onclick="getLogic();" value="Update truth table">
+				</div>
+			</div>
+		</div>
+		
 		<div class="horizontalModulesContainer">
 			<div class="horizontalModulesContainer">
 				<!-- ASCII-text-binary converter -->
@@ -106,195 +294,10 @@
 						</div>
 					</div>
 					
-					<div class="moduleContainer">
-						<div class="moduleTool">
-							<table id="truthTable">
-								<thead>
-									<th>A</th>
-									<th>B</th>
-									<th>C</th>
-									<th>D</th>
-									<th>F</th>
-									<th>G</th>
-									<th>H</th>
-								</thead>
-								<tbody>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-									<tr>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox" checked/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-										<td><input class="staticCheckbox" type="checkbox"/></td>
-									</tr>
-								</tbody>
-							</table>
-
-							<div style="margin-top: 5px;">
-								<input type="button" onclick="getLogic();" value="Update truth table">
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<div class="verticalModulesContainer">
 				
-			</div>
-		</div>
-		<div id="gateEditorFullContainer" class="horizontalModulesContainer">
-			<div id="gateEditorList" style="--w: 200px;">
-				<h3>Logic Gates:</h3>
-				<img src="Res/img/logicGates/logicGateAND.png" alt="AND" width="80" height="80" onclick="addElement.AND()">
-				<img src="Res/img/logicGates/logicGateNAND.png" alt="NAND" width="80" height="80" onclick="addElement.NAND()">
-				<img src="Res/img/logicGates/logicGateNOR.png" alt="NOR" width="80" height="80" onclick="addElement.NOR()">
-				<img src="Res/img/logicGates/logicGateNOT.png" alt="NOT" width="80" height="80" onclick="addElement.NOT()">
-				<img src="Res/img/logicGates/logicGateOR.png" alt="OR" width="80" height="80" onclick="addElement.OR()">
-				<img src="Res/img/logicGates/logicGateXNOR.png" alt="XNOR" width="80" height="80" onclick="addElement.XNOR()">
-				<img src="Res/img/logicGates/logicGateXOR.png" alt="XOR" width="80" height="80" onclick="addElement.XOR()">
-
-				<h3>Input</h3>
-				<img src="Res/img/logicGates/input.png" alt="Input" width="80" height="80" onclick="addElement.input()">
-				<h3>Output</h3>
-				<img src="Res/img/logicGates/output.png" alt="Output" width="80" height="80" onclick="addElement.output()">
-			</div>
-			<div id="gateEditorContainer">
-				<canvas id="gateEditor" width="800px" height="500px"></canvas>
 			</div>
 		</div>
 	</body>
