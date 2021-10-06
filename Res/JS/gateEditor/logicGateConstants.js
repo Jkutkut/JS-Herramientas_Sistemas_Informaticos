@@ -387,7 +387,9 @@ const SHAPES = {
             ],
             arcs: []
         }
-    ]
+    ],
+    INPUTS: 4,
+    OUTPUTS: 3
 };
 
 const IO = {

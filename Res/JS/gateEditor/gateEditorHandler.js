@@ -24,8 +24,7 @@ window.onload = () => {
 
     // Create circuit.
     inputs.push(new LogicGateInput(100, 100, 0));
-    inputs.push(new LogicGateInput(100, 400, 1));
-    outputs.push(new LogicGateOutput(600, 250, 6));
+    outputs.push(new LogicGateOutput(600, 250, SHAPES.INPUTS)); // 1º output
 
     updateTruthTableShape();
     show();
@@ -220,16 +219,16 @@ function addGate(gate) {
     show();
 }
 function addInput() {
-    if (inputs.length >= 2) return;
+    if (inputs.length >= SHAPES.INPUTS) return;
 
     inputs.push(new LogicGateInput(200, 100, inputs.length));
     updateTruthTableShape();
     show();
 }
 function addOutput() {
-    if (outputs.length >= 1) return;
+    if (outputs.length >= SHAPES.OUTPUTS) return;
     
-    outputs.push(new LogicGateOutput(200, 100, outputs.length));
+    outputs.push(new LogicGateOutput(200, 100, SHAPES.INPUTS + outputs.length));
     updateTruthTableShape();
     show();
 }
