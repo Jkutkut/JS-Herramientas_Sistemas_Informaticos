@@ -25,7 +25,7 @@ window.onload = () => {
     // Create circuit.
     inputs.push(new LogicGateInput(100, 100, 0));
     inputs.push(new LogicGateInput(100, 400, 1));
-    outputs.push(new LogicGateOutput(600, 250, 4));
+    outputs.push(new LogicGateOutput(600, 250, 6));
 
     updateTruthTableShape();
     show();

@@ -350,6 +350,42 @@ const SHAPES = {
                 ]
             ],
             arcs: []
+        },
+        {
+            name: "G",
+            lines: [
+                [
+                    new Point(SHAPES_SIZE * 0.5, 0),
+                    new Point(SHAPES_SIZE * 0.5, SHAPES_SIZE * 0.45)
+                ],
+                [
+                    new Point(SHAPES_SIZE * 0.5, 0),
+                    new Point(SHAPES_SIZE * 0.2, 0)
+                ]
+            ],
+            arcs: [
+                [SHAPES_SIZE * 0.2, 0, SHAPES_SIZE * 0.65, Math.PI * 0.8, -Math.PI  * 0.8],
+                [SHAPES_SIZE * 0.10, -SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, -Math.PI * 0.9, -Math.PI / 4],
+                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI * 0.9, Math.PI / 4, true]
+            ]
+        },
+        {
+            name: "H",
+            lines: [
+                [
+                    new Point(-SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(-SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(SHAPES_SIZE * 0.4, -SHAPES_SIZE * 0.7),
+                    new Point(SHAPES_SIZE * 0.4, SHAPES_SIZE * 0.7)
+                ],
+                [
+                    new Point(-SHAPES_SIZE * 0.4, 0),
+                    new Point(SHAPES_SIZE * 0.4, 0)
+                ]
+            ],
+            arcs: []
         }
     ]
 };
