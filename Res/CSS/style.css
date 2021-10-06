@@ -78,12 +78,18 @@ h2 {
 #truthTableContainer {
     --w: 400px;
     --h: 100%;
+    --bg: none;
+}
+
+#truthTableContainer div {
     --bg: var(--background);
+    padding: 10px;
+
+    background: var(--bg);
+
 
     margin-left: 0px;
     margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
 }
 
 table {
