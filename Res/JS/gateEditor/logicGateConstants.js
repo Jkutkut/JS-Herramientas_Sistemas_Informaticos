@@ -313,6 +313,27 @@ const SHAPES = {
             ]
         },
         {
+            name: "C",
+            lines: [],
+            arcs: [
+                [SHAPES_SIZE * 0.2, 0, SHAPES_SIZE * 0.65, Math.PI * 0.8, -Math.PI  * 0.8],
+                [SHAPES_SIZE * 0.10, -SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, -Math.PI * 0.9, -Math.PI / 4],
+                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI * 0.9, Math.PI / 4, true]
+            ]
+        },
+        {
+            name: "D",
+            lines: [
+                [
+                    new Point(-SHAPES_SIZE * 0.35, -SHAPES_SIZE * 0.7),
+                    new Point(-SHAPES_SIZE * 0.35, SHAPES_SIZE * 0.7)
+                ]
+            ],
+            arcs: [
+                [-SHAPES_SIZE * 0.35, 0, SHAPES_SIZE * 0.7, -Math.PI / 2, Math.PI / 2]
+            ]
+        },
+        {
             name: "F",
             lines: [
                 [
