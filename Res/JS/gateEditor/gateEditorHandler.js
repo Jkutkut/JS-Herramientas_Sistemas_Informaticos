@@ -26,6 +26,14 @@ window.onload = () => {
     inputs.push(new LogicGateInput(100, 100, 0));
     outputs.push(new LogicGateOutput(600, 250, SHAPES.INPUTS)); // 1º output
 
+
+    inputs.push(new LogicGateInput(100, 400, 1));
+
+    gates.push(new LogicGateAND(300, 150));
+    links.push(new LogicLink(inputs[0], gates[0], 0));
+    links.push(new LogicLink(inputs[1], gates[0], 1));
+    links.push(new LogicLink(gates[0], outputs[0], 0));
+
     updateTruthTableShape();
     show();
 }
@@ -235,19 +243,42 @@ function addOutput() {
 
 // Converters
 
+function *getIterator2toN(n) {
+    let result = [];
+    result.length = n;
+    for (let i = 0; i < (2 << (n - 1)); i++) {
+        for (let j = 1; j <= n; j++) {
+            result[n - j] = (i >> (j - 1)) % 2;
+        }
+        // console.log(...result);
+        yield result;
+    }
+}
+
 function getLogic(output=outputs[0]) {
     let s = output.stringLogic.substring(4);
     let q = processLogic(s);
 
+    // Calc result of applying the rule q to all the posible values of the inputs.
     let logicTable = [];
-    for (let i = 0; i < 2; i++) {
-        let A = i == 1;
-        for (let j = 0; j < 2; j++) {
-            let B = j == 1;
-            logicTable[i * 2 + j] = eval(q);
-        }
-    }
+    let iterator = getIterator2toN(inputs.length);
 
+    do {
+        let inputSequence = iterator.next();
+        if (inputSequence.done) {
+            break;
+        }
+        let vals = inputSequence.value;
+
+        for (let i = 0; i < vals.length; i++) {
+            let s = `var ${String.fromCharCode(65 + i)} = ${vals[i]} == 1`;
+            eval(s);
+        }
+
+        logicTable.push(eval(q));
+    } while (true)
+
+    // Represent result
     updateTruthTableShape();
 
     let increment = (2<<(3 - inputs.length));
