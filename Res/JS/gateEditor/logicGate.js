@@ -152,16 +152,16 @@ class LogicGateObject {
     }
 
     disconnectInput(port) {
-        if (this.IO.in[port] == undefined) {
-            throw new Error("The port is empty!");
+        if (port >= this.IO_SIZE.IN) {
+            throw new Error("The object doesn't have that port!");
         }
 
         this.IO.in[port] = undefined;
     }
 
     disconnectOutput(port) {
-        if (this.IO.out[port] == undefined) {
-            throw new Error("The port is empty!");
+        if (port >= this.IO_SIZE.OUT) {
+            throw new Error("The object doesn't have that port!");
         }
 
         this.IO.out[port] = undefined;
