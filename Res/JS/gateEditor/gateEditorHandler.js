@@ -255,38 +255,41 @@ function *getIterator2toN(n) {
     }
 }
 
-function getLogic(output=outputs[0]) {
-    let s = output.stringLogic.substring(4);
-    let q = processLogic(s);
-
-    // Calc result of applying the rule q to all the posible values of the inputs.
-    let logicTable = [];
-    let iterator = getIterator2toN(inputs.length);
-
-    do {
-        let inputSequence = iterator.next();
-        if (inputSequence.done) {
-            break;
-        }
-        let vals = inputSequence.value;
-
-        for (let i = 0; i < vals.length; i++) {
-            let s = `var ${String.fromCharCode(65 + i)} = ${vals[i]} == 1`;
-            eval(s);
-        }
-
-        logicTable.push(eval(q));
-    } while (true)
-
-    // Represent result
+function getLogic() {
     updateTruthTableShape();
 
-    let increment = (2<<(3 - inputs.length));
-    if (inputs.length == 4) {
-        increment = 1;
-    }
-    for (let s = 0, i = 0; s < 16; s+=increment, i++) {
-        $($($($("tr")[s + 1]).children()[4]).children()[0]).attr("checked", logicTable[i]);
+    for (let outputIndex = 0; outputIndex < outputs.length; outputIndex++) {
+        let s = outputs[outputIndex].stringLogic.substring(4);
+        let q = processLogic(s);
+
+        // Calc result of applying the rule q to all the posible values of the inputs.
+        let logicTable = [];
+        let iterator = getIterator2toN(inputs.length);
+
+        do {
+            let inputSequence = iterator.next();
+            if (inputSequence.done) {
+                break;
+            }
+            let vals = inputSequence.value;
+
+            for (let i = 0; i < vals.length; i++) {
+                let s = `var ${String.fromCharCode(65 + i)} = ${vals[i]} == 1`;
+                eval(s);
+            }
+
+            logicTable.push(eval(q));
+        } while (true)
+
+        // Represent result
+
+        let increment = (2<<(3 - inputs.length));
+        if (inputs.length == 4) {
+            increment = 1;
+        }
+        for (let s = 0, i = 0; s < 16; s+=increment, i++) {
+            $($($($("tr")[s + 1]).children()[SHAPES.INPUTS + outputIndex]).children()[0]).attr("checked", logicTable[i]);
+        }
     }
 }
 
