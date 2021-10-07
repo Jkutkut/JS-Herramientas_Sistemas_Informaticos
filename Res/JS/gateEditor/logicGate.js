@@ -205,6 +205,13 @@ class LogicGateNOR extends LogicGate {
 }
 
 class LogicGateNOT extends LogicGate {
+
+    constructor(x, y) {
+        super(x, y);
+
+        this.IO_SIZE.IN = 1;
+    }
+
     get defaultShape() {
         return SHAPES.NOT;
     }
