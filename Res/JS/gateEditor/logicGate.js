@@ -162,12 +162,10 @@ class LogicGateObject {
     disconnectOutput(link) {
         for (let i = 0; i < this.IO.out.length; i++) {
             if (this.IO.out[i] == link) {
-                this.IO.out.splice(i, 1);
-                return;
+                return this.IO.out.splice(i, 1);
             }
         }
-
-        throw new Error("The link wasn't connected.")
+        return null;
     }
 }
 
