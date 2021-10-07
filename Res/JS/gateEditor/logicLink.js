@@ -30,6 +30,11 @@ class LogicLinkPrototype {
     get toPoint() {
         return this.output.getPortLocation(this);
     }
+
+    destroy() {
+        this.output.disconnectInput(this.output.getPortLocation(this));
+        this.input.disconnectOutput(this);
+    }
 }
 
 class LogicLink extends LogicLinkPrototype {
