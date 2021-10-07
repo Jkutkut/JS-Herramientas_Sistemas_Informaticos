@@ -193,14 +193,18 @@ function handleRightClick(e) {
     // Move objects
     let mouseInsideArray = (arr)=>{
         for (let i = 0; i < arr.length; i++) {
-            for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
-                if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
-                    return true;
-                }
-            }
+            if (arr[i].isPointInside(mouse)) { // If mouse over gateObj 
+                // for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+                //     let link = arr[i].disconnectInput(j); // Disconnect the link and store it
+                //     if (link) link.destroy();
+                // }
 
-            if (arr[i].isPointInside(mouse)) {
-                
+                // for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+                //     let link = arr[i].disconnectInput(j); // Disconnect the link and store it
+                //     if (link) link.destroy();
+                // }
+
+                // show();
                 return true;
             }
         }
