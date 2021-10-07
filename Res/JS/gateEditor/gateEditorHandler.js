@@ -20,7 +20,8 @@ window.onload = () => {
     canvasOffset = new Point(cOffset.left, cOffset.top);
 
     // Mouse control logic
-    $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
+    window.addEventListener("contextmenu", e => e.preventDefault());
+    $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove).contextmenu(handleRightClick);
 
     // Create circuit.
     addInput();
@@ -110,8 +111,6 @@ function handleMouseDown(e) {
         parseInt(e.clientX - canvasOffset.x),
         parseInt(e.clientY - canvasOffset.y)
     );
-
-    console.log(e);
     
     // Move objects
     let mouseInsideArray = (arr)=>{
@@ -149,7 +148,6 @@ function handleMouseUp(e) {
                 for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
                     if (arr[i].IO.in[j] == undefined &&
                         arr[i].getIN_location(j).dist(draggingGate) < SHAPES_SIZE * 0.5) {
-                        console.log(`Collision at index ${i}, port ${j}`);
                         return {obj: arr[i], port: j};
                     }
                 }
@@ -184,6 +182,33 @@ function handleMouseMove(e) {
 
         draggingGate.moveToPoint(mouse);
     }   
+}
+
+function handleRightClick(e) {
+    let mouse = new Point(
+        parseInt(e.clientX - canvasOffset.x),
+        parseInt(e.clientY - canvasOffset.y)
+    );
+    
+    // Move objects
+    let mouseInsideArray = (arr)=>{
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
+                if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
+                    return true;
+                }
+            }
+
+            if (arr[i].isPointInside(mouse)) {
+                
+                return true;
+            }
+        }
+        return false;
+    };
+    if (mouseInsideArray(gates)) return;
+    if (mouseInsideArray(inputs)) return;
+    if (mouseInsideArray(outputs)) return;
 }
 
 // Logic to add elements to canvas
