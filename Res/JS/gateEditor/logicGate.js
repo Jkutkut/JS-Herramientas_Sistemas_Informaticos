@@ -150,6 +150,22 @@ class LogicGateObject {
     connectOutput(link) {
         this.IO.out.push(link);
     }
+
+    disconnectInput(port) {
+        if (this.IO.in[port] == undefined) {
+            throw new Error("The port is empty!");
+        }
+
+        this.IO.in[port] = undefined;
+    }
+
+    disconnectOutput(port) {
+        if (this.IO.out[port] == undefined) {
+            throw new Error("The port is empty!");
+        }
+
+        this.IO.out[port] = undefined;
+    }
 }
 
 // Logic gates
