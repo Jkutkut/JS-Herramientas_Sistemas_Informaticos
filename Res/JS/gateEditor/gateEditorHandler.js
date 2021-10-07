@@ -23,16 +23,10 @@ window.onload = () => {
     $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);
 
     // Create circuit.
-    inputs.push(new LogicGateInput(100, 100, 0));
-    outputs.push(new LogicGateOutput(600, 250, SHAPES.INPUTS)); // 1º output
-
-
-    inputs.push(new LogicGateInput(100, 400, 1));
-
-    gates.push(new LogicGateAND(300, 150));
-    links.push(new LogicLink(inputs[0], gates[0], 0));
-    links.push(new LogicLink(inputs[1], gates[0], 1));
-    links.push(new LogicLink(gates[0], outputs[0], 0));
+    addInput();
+    addOutput();
+    // inputs.push(new LogicGateInput(100, 100, 0));
+    // outputs.push(new LogicGateOutput(600, 250, SHAPES.INPUTS)); // 1º output
 
     updateTruthTableShape();
     show();
@@ -116,6 +110,8 @@ function handleMouseDown(e) {
         parseInt(e.clientX - canvasOffset.x),
         parseInt(e.clientY - canvasOffset.y)
     );
+
+    console.log(e);
     
     // Move objects
     let mouseInsideArray = (arr)=>{
@@ -229,14 +225,14 @@ function addGate(gate) {
 function addInput() {
     if (inputs.length >= SHAPES.INPUTS) return;
 
-    inputs.push(new LogicGateInput(200, 100, inputs.length));
+    inputs.push(new LogicGateInput(100, 100 * (1 + inputs.length), inputs.length));
     updateTruthTableShape();
     show();
 }
 function addOutput() {
     if (outputs.length >= SHAPES.OUTPUTS) return;
     
-    outputs.push(new LogicGateOutput(200, 100, SHAPES.INPUTS + outputs.length));
+    outputs.push(new LogicGateOutput(600, 100 * (1 + outputs.length), SHAPES.INPUTS + outputs.length));
     updateTruthTableShape();
     show();
 }
