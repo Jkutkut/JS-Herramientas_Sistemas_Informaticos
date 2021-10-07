@@ -79,13 +79,13 @@ class LogicGateObject {
     }
 
     getPortLocation(link) {
-        for (let i = 0; i < this.IO.in.length; i++) {
+        for (let i = 0; i < this.IO_SIZE.IN; i++) {
             if (this.IO.in[i] == link) {
                 return this.getIN_location(i);
             }
         }
 
-        for (let i = 0; i < this.IO.out.length; i++) {
+        for (let i = 0; i < this.IO.out.length; i++) { // Not IO_SIZE because there could be multiples outputs on the port
             if (this.IO.out[i] == link) {
                 return this.getOUT_location(0);
                 // return this.getOUT_location(i);
@@ -159,12 +159,15 @@ class LogicGateObject {
         this.IO.in[port] = undefined;
     }
 
-    disconnectOutput(port) {
-        if (port >= this.IO_SIZE.OUT) {
-            throw new Error("The object doesn't have that port!");
+    disconnectOutput(link) {
+        for (let i = 0; i < this.IO.out.length; i++) {
+            if (this.IO.out[i] == link) {
+                this.IO.out.splice(i, 1);
+                return;
+            }
         }
 
-        this.IO.out[port] = undefined;
+        throw new Error("The link wasn't connected.")
     }
 }
 
