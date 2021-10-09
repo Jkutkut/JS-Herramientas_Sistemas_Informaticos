@@ -220,29 +220,29 @@ const addElement = {
     AND: (x, y) => {
         addGate(LogicGateAND, x, y);
     },
-    NAND: () => {
-        addGate(LogicGateNAND);
+    NAND: (x, y) => {
+        addGate(LogicGateNAND, x, y);
     },
-    NOR: () => {
-        addGate(LogicGateNOR);
+    NOR: (x, y) => {
+        addGate(LogicGateNOR, x, y);
     },
-    NOT: () => {
-        addGate(LogicGateNOT);
+    NOT: (x, y) => {
+        addGate(LogicGateNOT, x, y);
     },
-    OR: () => {
-        addGate(LogicGateOR);
+    OR: (x, y) => {
+        addGate(LogicGateOR, x, y);
     },
-    XNOR: () => {
-        addGate(LogicGateXNOR);
+    XNOR: (x, y) => {
+        addGate(LogicGateXNOR, x, y);
     },
-    XOR: () => {
-        addGate(LogicGateXOR);
+    XOR: (x, y) => {
+        addGate(LogicGateXOR, x, y);
     },
-    input: () => {
-        addInput();
+    input: (x, y) => {
+        addInput(x, y);
     },
-    output: () => {
-        addOutput();
+    output: (x, y) => {
+        addOutput(x, y);
     },
 
 }
@@ -255,45 +255,31 @@ function addGate(gate, x=null, y=null) {
 }
 
 function addDragGate(event) {
-    let eDataT = event.dataTransfer;
-    console.log(event);
-    console.log(eDataT);
-    console.log(eDataT.getData("Text"));
-
     let gateTypeRegex = /^.*?([A-Za-z]+)\.png$/;
     let gateObjType = event.dataTransfer.getData("Text").match(gateTypeRegex)[1];
+    gateObjType = gateObjType.match(/output|input|[A-Z]+$/);
 
     let x = event.layerX;
     let y = event.layerY;
 
-    console.log(x, y)
-    
-    switch(gateObjType) {
-        case "input":
-            addOutput();
-        break;
-        case "output":
-            addOutput();
-        break;
-        default:
-            let gateType = gateObjType.match(/([A-Z]+)$/)[1];
-
-            addElement[gateType](x, y);
-        break;
-    }
+    addElement[gateObjType](x, y);
 }
 
-function addInput() {
+function addInput(x=null, y=null) {
     if (inputs.length >= SHAPES.INPUTS) return;
 
-    inputs.push(new LogicGateInput(100, 100 * (1 + inputs.length), inputs.length));
+    x = (x == null) ? 100 : x;
+    y = (y == null) ? 100 * (1 + inputs.length) : y;
+    inputs.push(new LogicGateInput(x, y, inputs.length));
     updateTruthTableShape();
     show();
 }
-function addOutput() {
+function addOutput(x=null, y=null) {
     if (outputs.length >= SHAPES.OUTPUTS) return;
     
-    outputs.push(new LogicGateOutput(600, 100 * (1 + outputs.length), SHAPES.INPUTS + outputs.length));
+    x = (x == null) ? 600 : x;
+    y = (y == null) ? 100 * (1 + outputs.length) : y;
+    outputs.push(new LogicGateOutput(x, y, SHAPES.INPUTS + outputs.length));
     updateTruthTableShape();
     show();
 }
