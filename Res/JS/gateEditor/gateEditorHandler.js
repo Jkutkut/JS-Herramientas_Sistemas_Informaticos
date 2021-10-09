@@ -217,8 +217,8 @@ function handleRightClick(e) {
 
 // Logic to add elements to canvas
 const addElement = {
-    AND: () => {
-        addGate(LogicGateAND);
+    AND: (x, y) => {
+        addGate(LogicGateAND, x, y);
     },
     NAND: () => {
         addGate(LogicGateNAND);
@@ -247,10 +247,42 @@ const addElement = {
 
 }
 
-function addGate(gate) {
-    gates.push(new gate(200, 100));
+function addGate(gate, x=null, y=null) {
+    x = (x == null) ? 250 : x;
+    y = (y == null) ? 100 : y;
+    gates.push(new gate(x, y));
     show();
 }
+
+function addDragGate(event) {
+    let eDataT = event.dataTransfer;
+    console.log(event);
+    console.log(eDataT);
+    console.log(eDataT.getData("Text"));
+
+    let gateTypeRegex = /^.*?([A-Za-z]+)\.png$/;
+    let gateObjType = event.dataTransfer.getData("Text").match(gateTypeRegex)[1];
+
+    let x = event.layerX;
+    let y = event.layerY;
+
+    console.log(x, y)
+    
+    switch(gateObjType) {
+        case "input":
+            addOutput();
+        break;
+        case "output":
+            addOutput();
+        break;
+        default:
+            let gateType = gateObjType.match(/([A-Z]+)$/)[1];
+
+            addElement[gateType](x, y);
+        break;
+    }
+}
+
 function addInput() {
     if (inputs.length >= SHAPES.INPUTS) return;
 
