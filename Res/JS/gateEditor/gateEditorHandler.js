@@ -37,62 +37,62 @@ window.onload = () => {
 function show () {
     ctx.clearRect(0, 0, gateEditorCanvas.width, gateEditorCanvas.height);
 
-    ctx.textAlign = 'center';
-    for (var w = 0; w < gateEditorCanvas.width; w += 100) {
-        for (var h = 0; h < gateEditorCanvas.height; h += 100) {
-            ctx.fillText(w + ',' + h, w, h);
-        }
-    }
-
     ctx.save(); // save previous styles & set our current styles
     
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 3;
 
-    showArray(inputs);
-    showArray(outputs);
-    showArray(gates);
+    canvas_draw.array(inputs);
+    canvas_draw.array(outputs);
+    canvas_draw.array(gates);
 
     for(let i = 0; i < links.length; i++) {
-        showElement(links[i]);
+        canvas_draw.element(links[i]);
     }
 
     ctx.restore();
 }
 
-function showArray(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        showElement(arr[i]);
-
-        for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
-            showElement(pointShape(arr[i].getIN_location(j)), true);
-        }
-
-        for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
-            showElement(pointShape(arr[i].getOUT_location(j)), true);
-        }
-    }
-}
-
-function showElement(element, fill=false) {
-    let shape = element.shape;
-
-    for (let i = 0; i < shape.lines.length; i++) {
+const canvas_draw = {
+    line: (startPoint, endPoint) => {
         ctx.beginPath();
-        ctx.moveTo(...shape.lines[i][0].pos);
-        ctx.lineTo(...shape.lines[i][1].pos);
+        ctx.moveTo(...startPoint.pos);
+        ctx.lineTo(...endPoint.pos);
         ctx.closePath();
-        ctx.stroke(); // update the screen
-    }
-    
-    for (let i = 0; i < shape.arcs.length; i++) {
+        ctx.stroke();
+    },
+    arc: (x, y, radius, startAngle, endAngle, fill=false) => {
         ctx.beginPath();
-        ctx.arc(...shape.arcs[i]);
+        ctx.arc(x, y, radius, startAngle, endAngle, fill);
         if (fill) {
             ctx.fill();
         }
         else {
             ctx.stroke();
+        }
+    },
+    element: (element, fillCircles=false) => {
+        let shape = element.shape;
+
+        for (let i = 0; i < shape.lines.length; i++) {
+            canvas_draw.line(...shape.lines[i]);
+        }
+        
+        for (let i = 0; i < shape.arcs.length; i++) {
+            canvas_draw.arc(...shape.arcs[i], fillCircles);
+        }
+    },
+    array: (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+            canvas_draw.element(arr[i]);
+    
+            for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
+                canvas_draw.element(pointShape(arr[i].getIN_location(j)), true);
+            }
+    
+            for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
+                canvas_draw.element(pointShape(arr[i].getOUT_location(j)), true);
+            }
         }
     }
 }
@@ -118,7 +118,6 @@ function updateCanvasOffset() {
 
 function handleMouseDown(e) {
     let mouse = getMousePosition(e);
-    console.log(mouse);
     
     // Move objects
     let mouseInsideArray = (arr) => {
@@ -131,11 +130,7 @@ function handleMouseDown(e) {
                     return true;
                 }
             }
-
-            console.log(arr[i].pos);
-            console.log(arr[i].isPointInside(mouse));
             if (arr[i].isPointInside(mouse)) {
-                console.log("IN");
                 draggingGate = arr[i];
                 refreshingCanvas = setInterval(show, 40);
                 return true;
