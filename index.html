@@ -35,8 +35,8 @@
 	</head>
 	<body>
 		<!-- Logic gate Editor -->
-		<div class="horizontalContainer" style="width: 1230px; background: var(--dark_background);">
-			<div id="" class="horizontalContainer gateEditorFullContainer">
+		<div class="verticalContainer" style="width: 100%; background: var(--dark_background);">
+			<div class="horizontalContainer gateEditorFullContainer">
 				<!-- Elements list -->
 				<div id="gateEditorList" style="--w: 200px;">
 					<h3>Logic Gates:</h3>
@@ -55,7 +55,7 @@
 				</div>
 				<!-- Canvas -->
 				<div id="gateEditorContainer">
-					<canvas id="gateEditor" width="800px" height="500px" ondrop="addDragGate(event)" ondragover="event.preventDefault()"></canvas>
+					<canvas id="gateEditor" width="3200px" height="2000px" ondrop="addDragGate(event)" ondragover="event.preventDefault()"></canvas>
 				</div>
 			</div>
 			<div id="truthTableContainer" class="verticalContainer moduleContainer centerContent">
