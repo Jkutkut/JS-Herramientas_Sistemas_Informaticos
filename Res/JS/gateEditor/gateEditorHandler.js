@@ -1,4 +1,4 @@
-var gateEditorCanvas;
+var gateEditorCanvas, canvasContainer;
 var ctx;
 var canvasOffset;
 
@@ -15,6 +15,7 @@ window.onload = () => {
 
     // Set up canvas
     gateEditorCanvas = document.getElementById('gateEditor');
+    canvasContainer = document.getElementById('gateEditorContainer');
     ctx = gateEditorCanvas.getContext('2d');
     let cOffset = $("#gateEditor").offset();
     canvasOffset = new Point(cOffset.left, cOffset.top);
@@ -26,8 +27,6 @@ window.onload = () => {
     // Create circuit.
     addInput();
     addOutput();
-    // inputs.push(new LogicGateInput(100, 100, 0));
-    // outputs.push(new LogicGateOutput(600, 250, SHAPES.INPUTS)); // 1º output
 
     updateTruthTableShape();
     show();
@@ -37,6 +36,13 @@ window.onload = () => {
 
 function show () {
     ctx.clearRect(0, 0, gateEditorCanvas.width, gateEditorCanvas.height);
+
+    ctx.textAlign = 'center';
+    for (var w = 0; w < gateEditorCanvas.width; w += 100) {
+        for (var h = 0; h < gateEditorCanvas.height; h += 100) {
+            ctx.fillText(w + ',' + h, w, h);
+        }
+    }
 
     ctx.save(); // save previous styles & set our current styles
     
@@ -77,7 +83,6 @@ function showElement(element, fill=false) {
         ctx.lineTo(...shape.lines[i][1].pos);
         ctx.closePath();
         ctx.stroke(); // update the screen
-
     }
     
     for (let i = 0; i < shape.arcs.length; i++) {
@@ -106,14 +111,17 @@ function pointShape(point) {
 var draggingGate = null;
 var refreshingCanvas = null;
 
+function updateCanvasOffset() {
+    let cOffset = $("#gateEditor").offset();
+    canvasOffset.moveTo(cOffset.left, cOffset.top);
+}
+
 function handleMouseDown(e) {
-    let mouse = new Point(
-        parseInt(e.clientX - canvasOffset.x),
-        parseInt(e.clientY - canvasOffset.y)
-    );
+    let mouse = getMousePosition(e);
+    console.log(mouse);
     
     // Move objects
-    let mouseInsideArray = (arr)=>{
+    let mouseInsideArray = (arr) => {
         for (let i = 0; i < arr.length; i++) {
             for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
                 if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
@@ -124,7 +132,10 @@ function handleMouseDown(e) {
                 }
             }
 
+            console.log(arr[i].pos);
+            console.log(arr[i].isPointInside(mouse));
             if (arr[i].isPointInside(mouse)) {
+                console.log("IN");
                 draggingGate = arr[i];
                 refreshingCanvas = setInterval(show, 40);
                 return true;
@@ -175,10 +186,11 @@ function handleMouseUp(e) {
 
 function handleMouseMove(e) {
     if (draggingGate != null) {
-        let mouse = new Point(
-            parseInt(e.clientX - canvasOffset.x),
-            parseInt(e.clientY - canvasOffset.y)
-        );
+        // let mouse = new Point(
+        //     parseInt(e.clientX - canvasOffset.x),
+        //     parseInt(e.clientY - canvasOffset.y)
+        // );
+        let mouse = getMousePosition(e);
 
         draggingGate.moveToPoint(mouse);
     }   
@@ -214,6 +226,11 @@ function handleRightClick(e) {
     if (mouseInsideArray(inputs)) return;
     if (mouseInsideArray(outputs)) return;
 }
+
+function getMousePosition(e) {
+    return mouse = new Point(e.offsetX, e.offsetY);
+}
+
 
 // Logic to add elements to canvas
 const addElement = {
@@ -255,6 +272,7 @@ function addGate(gate, x=null, y=null) {
 }
 
 function addDragGate(event) {
+    console.log(event);
     let gateTypeRegex = /^.*?([A-Za-z]+)\.png$/;
     let gateObjType = event.dataTransfer.getData("Text").match(gateTypeRegex)[1];
     gateObjType = gateObjType.match(/output|input|[A-Z]+$/);
