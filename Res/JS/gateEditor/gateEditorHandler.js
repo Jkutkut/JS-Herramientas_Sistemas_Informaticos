@@ -25,8 +25,8 @@ window.onload = () => {
     $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove).contextmenu(handleRightClick);
 
     // Create circuit.
-    addInput();
-    addOutput();
+    addElement.input();
+    addElement.output();
 
     updateTruthTableShape();
     show();
@@ -71,7 +71,7 @@ const canvas_draw = {
             ctx.stroke();
         }
     },
-    element: (element, fillCircles=false) => {
+    element: (element, fill=false) => {
         let shape = element.shape;
 
         for (let i = 0; i < shape.lines.length; i++) {
@@ -79,7 +79,7 @@ const canvas_draw = {
         }
         
         for (let i = 0; i < shape.arcs.length; i++) {
-            canvas_draw.arc(...shape.arcs[i], fillCircles);
+            canvas_draw.arc(...shape.arcs[i], fill);
         }
     },
     array: (arr) => {
@@ -229,45 +229,54 @@ function getMousePosition(e) {
 
 // Logic to add elements to canvas
 const addElement = {
+    gate: (gate, x=null, y=null) => {
+        x = (x == null) ? 250 : x;
+        y = (y == null) ? 100 : y;
+        gates.push(new gate(x, y));
+        show();
+    },
+    input: (x=null, y=null) => {
+        if (inputs.length >= SHAPES.INPUTS) return;
+    
+        x = (x == null) ? 100 : x;
+        y = (y == null) ? 100 * (1 + inputs.length) : y;
+        inputs.push(new LogicGateInput(x, y, inputs.length));
+        updateTruthTableShape();
+        show();
+    },
+    output: (x=null, y=null) => {
+        if (outputs.length >= SHAPES.OUTPUTS) return;
+        
+        x = (x == null) ? 600 : x;
+        y = (y == null) ? 100 * (1 + outputs.length) : y;
+        outputs.push(new LogicGateOutput(x, y, SHAPES.INPUTS + outputs.length));
+        updateTruthTableShape();
+        show();
+    },
     AND: (x, y) => {
-        addGate(LogicGateAND, x, y);
+        addElement.gate(LogicGateAND, x, y);
     },
     NAND: (x, y) => {
-        addGate(LogicGateNAND, x, y);
+        addElement.gate(LogicGateNAND, x, y);
     },
     NOR: (x, y) => {
-        addGate(LogicGateNOR, x, y);
+        addElement.gate(LogicGateNOR, x, y);
     },
     NOT: (x, y) => {
-        addGate(LogicGateNOT, x, y);
+        addElement.gate(LogicGateNOT, x, y);
     },
     OR: (x, y) => {
-        addGate(LogicGateOR, x, y);
+        addElement.gate(LogicGateOR, x, y);
     },
     XNOR: (x, y) => {
-        addGate(LogicGateXNOR, x, y);
+        addElement.gate(LogicGateXNOR, x, y);
     },
     XOR: (x, y) => {
-        addGate(LogicGateXOR, x, y);
-    },
-    input: (x, y) => {
-        addInput(x, y);
-    },
-    output: (x, y) => {
-        addOutput(x, y);
-    },
-
-}
-
-function addGate(gate, x=null, y=null) {
-    x = (x == null) ? 250 : x;
-    y = (y == null) ? 100 : y;
-    gates.push(new gate(x, y));
-    show();
+        addElement.gate(LogicGateXOR, x, y);
+    }
 }
 
 function addDragGate(event) {
-    console.log(event);
     let gateTypeRegex = /^.*?([A-Za-z]+)\.png$/;
     let gateObjType = event.dataTransfer.getData("Text").match(gateTypeRegex)[1];
     gateObjType = gateObjType.match(/output|input|[A-Z]+$/);
@@ -276,25 +285,6 @@ function addDragGate(event) {
     let y = event.layerY;
 
     addElement[gateObjType](x, y);
-}
-
-function addInput(x=null, y=null) {
-    if (inputs.length >= SHAPES.INPUTS) return;
-
-    x = (x == null) ? 100 : x;
-    y = (y == null) ? 100 * (1 + inputs.length) : y;
-    inputs.push(new LogicGateInput(x, y, inputs.length));
-    updateTruthTableShape();
-    show();
-}
-function addOutput(x=null, y=null) {
-    if (outputs.length >= SHAPES.OUTPUTS) return;
-    
-    x = (x == null) ? 600 : x;
-    y = (y == null) ? 100 * (1 + outputs.length) : y;
-    outputs.push(new LogicGateOutput(x, y, SHAPES.INPUTS + outputs.length));
-    updateTruthTableShape();
-    show();
 }
 
 // Converters
