@@ -32,7 +32,7 @@ class LogicLinkPrototype {
     }
 
     destroy() {
-        this.output.disconnectInput(this.output.getPortLocation(this));
+        this.output.disconnectInput(this.output.getPortIndex(this));
         this.input.disconnectOutput(this);
     }
 }
