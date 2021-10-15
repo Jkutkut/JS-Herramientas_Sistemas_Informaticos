@@ -22,11 +22,18 @@ window.onload = () => {
 
     // Mouse control logic
     window.addEventListener("contextmenu", e => e.preventDefault());
-    $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove).contextmenu(handleRightClick);
+    $("#gateEditor").mousedown(handleMouseDown).mouseup(handleMouseUp).mousemove(handleMouseMove);// .contextmenu(handleRightClick);
 
     // Create circuit.
     addElement.input();
     addElement.output();
+
+    addElement.input();
+    addElement.AND(280, 180);
+
+    links.push(new LogicLink(inputs[0], gates[0], 0));
+    links.push(new LogicLink(inputs[1], gates[0], 1));
+    links.push(new LogicLink(gates[0], outputs[0], 0));
 
     updateTruthTableShape();
     show();
@@ -117,30 +124,54 @@ function updateCanvasOffset() {
 }
 
 function handleMouseDown(e) {
+    // console.log(e);
     let mouse = getMousePosition(e);
     
     // Move objects
-    let mouseInsideArray = (arr) => {
-        for (let i = 0; i < arr.length; i++) {
-            for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
-                if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
-                    links.push(new mouseLink(arr[i], mouse));
-                    draggingGate = mouse;
+    let mouseInsideArray;
+    if (e.button == 0) {
+        mouseInsideArray = (arr) => {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr[i].IO_SIZE.OUT; j++) {
+                    if (arr[i].getOUT_location(j).dist(mouse) < SHAPES_SIZE * 0.5) {
+                        links.push(new mouseLink(arr[i], mouse));
+                        draggingGate = mouse;
+                        refreshingCanvas = setInterval(show, 40);
+                        return true;
+                    }
+                }
+                if (arr[i].isPointInside(mouse)) {
+                    draggingGate = arr[i];
                     refreshingCanvas = setInterval(show, 40);
                     return true;
                 }
             }
-            if (arr[i].isPointInside(mouse)) {
-                draggingGate = arr[i];
-                refreshingCanvas = setInterval(show, 40);
-                return true;
+            return false;
+        };
+    }
+    else {
+        mouseInsideArray = (arr)=>{
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].isPointInside(mouse)) { // If mouse over gateObj 
+                    // Remove link objects and disconnect it if an output link exist
+                    for (let j = 0, k = 0; j < links.length && k < arr[i].IO_SIZE.IN + arr[i].IO_SIZE.OUT; j++) {
+                        if (links[j].from == arr[i] || links[j].to == arr[i]) {
+                            links[j].destroy();
+                            links.splice(j--, 1);
+                            k++;
+                        }
+                    }
+
+                    // Lastly, remove the element
+                    arr.splice(i, 1);
+                    return true;
+                }
             }
-        }
-        return false;
-    };
-    if (mouseInsideArray(gates)) return;
-    if (mouseInsideArray(inputs)) return;
-    if (mouseInsideArray(outputs)) return;
+            return false;
+        };
+    }
+    
+    if (mouseInsideArray(gates) || mouseInsideArray(inputs) || mouseInsideArray(outputs)) return;
 }
 
 function handleMouseUp(e) {
@@ -181,46 +212,19 @@ function handleMouseUp(e) {
 
 function handleMouseMove(e) {
     if (draggingGate != null) {
-        // let mouse = new Point(
-        //     parseInt(e.clientX - canvasOffset.x),
-        //     parseInt(e.clientY - canvasOffset.y)
-        // );
-        let mouse = getMousePosition(e);
-
-        draggingGate.moveToPoint(mouse);
+        draggingGate.moveToPoint(getMousePosition(e));
     }   
 }
 
-function handleRightClick(e) {
-    let mouse = new Point(
-        parseInt(e.clientX - canvasOffset.x),
-        parseInt(e.clientY - canvasOffset.y)
-    );
+// function handleRightClick(e) {
+//     let mouse = getMousePosition(e);
     
-    // Move objects
-    let mouseInsideArray = (arr)=>{
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].isPointInside(mouse)) { // If mouse over gateObj 
-                // for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
-                //     let link = arr[i].disconnectInput(j); // Disconnect the link and store it
-                //     if (link) link.destroy();
-                // }
-
-                // for (let j = 0; j < arr[i].IO_SIZE.IN; j++) {
-                //     let link = arr[i].disconnectInput(j); // Disconnect the link and store it
-                //     if (link) link.destroy();
-                // }
-
-                // show();
-                return true;
-            }
-        }
-        return false;
-    };
-    if (mouseInsideArray(gates)) return;
-    if (mouseInsideArray(inputs)) return;
-    if (mouseInsideArray(outputs)) return;
-}
+//     // Move objects
+    
+//     if (mouseInsideArray(gates)) return;
+//     if (mouseInsideArray(inputs)) return;
+//     if (mouseInsideArray(outputs)) return;
+// }
 
 function getMousePosition(e) {
     return mouse = new Point(e.offsetX, e.offsetY);
