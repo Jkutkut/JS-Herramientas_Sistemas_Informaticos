@@ -78,6 +78,22 @@ class LogicGateObject {
         return IO.OUTPUT[this.IO_SIZE.OUT - 1][index].plus(this.pos);
     }
 
+    getPortIndex(link) {
+        for (let i = 0; i < this.IO_SIZE.IN; i++) {
+            if (this.IO.in[i] == link) {
+                return i;
+            }
+        }
+
+        for (let i = 0; i < this.IO.out.length; i++) { // Not IO_SIZE because there could be multiples outputs on the port
+            if (this.IO.out[i] == link) {
+                return i;
+            }
+        }
+
+        throw new Error("The given link is not connected to this object.");
+    }
+
     getPortLocation(link) {
         for (let i = 0; i < this.IO_SIZE.IN; i++) {
             if (this.IO.in[i] == link) {
@@ -156,16 +172,21 @@ class LogicGateObject {
             throw new Error("The object doesn't have that port!");
         }
 
+        if (this.IO.in[port] == undefined) {
+            throw new Error(`Can not disconnect empty port.\nElement: ${this.stringName}, port: ${port}`);
+        }
+        // this.IO.in.splice(port, 1, undefined);
         this.IO.in[port] = undefined;
     }
 
     disconnectOutput(link) {
         for (let i = 0; i < this.IO.out.length; i++) {
             if (this.IO.out[i] == link) {
-                return this.IO.out.splice(i, 1);
+                return this.IO.out[i] = undefined;
+                // return this.IO.out.splice(i, 1, undefined);
             }
         }
-        return null;
+        throw new Error("Link not connected to this gate in any output ports.");
     }
 }
 
