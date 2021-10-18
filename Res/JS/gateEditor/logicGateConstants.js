@@ -318,7 +318,7 @@ const SHAPES = {
             arcs: [
                 [SHAPES_SIZE * 0.2, 0, SHAPES_SIZE * 0.65, Math.PI * 0.8, -Math.PI  * 0.8],
                 [SHAPES_SIZE * 0.10, -SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, -Math.PI * 0.9, -Math.PI / 4],
-                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI * 0.9, Math.PI / 4, true]
+                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI / 4, Math.PI * 0.9]
             ]
         },
         {
@@ -366,7 +366,7 @@ const SHAPES = {
             arcs: [
                 [SHAPES_SIZE * 0.2, 0, SHAPES_SIZE * 0.65, Math.PI * 0.8, -Math.PI  * 0.8],
                 [SHAPES_SIZE * 0.10, -SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, -Math.PI * 0.9, -Math.PI / 4],
-                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI * 0.9, Math.PI / 4, true]
+                [SHAPES_SIZE * 0.10,  SHAPES_SIZE * 0.10, SHAPES_SIZE * 0.50, Math.PI / 4, Math.PI * 0.9]
             ]
         },
         {
