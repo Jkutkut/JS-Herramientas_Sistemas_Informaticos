@@ -1,6 +1,7 @@
 :root {
     --background: rgb(100, 200, 100);
     --dark_background: rgb(80, 150, 80);
+    --signatureColor: rgba(80, 150, 80, 0.25);
     --textSize: 1.2rem;
 
     --gateEditorBG: white;
@@ -157,4 +158,21 @@ tr:nth-child(even) {
 
     display: block;
     background-color: var(--gateEditorBG);
+}
+
+
+/* Signature */
+
+#signature {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    padding: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+    border-radius: 40px;
+
+    background: var(--signatureColor);
 }
