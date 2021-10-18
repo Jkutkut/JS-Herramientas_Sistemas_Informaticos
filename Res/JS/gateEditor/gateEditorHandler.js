@@ -172,6 +172,39 @@ function handleMouseDown(e) {
     }
     
     if (mouseInsideArray(gates) || mouseInsideArray(inputs) || mouseInsideArray(outputs)) return;
+
+    if (e.button == 0) return; // Only continue if right click
+    // Check if link pressed
+    const THRESHOLD = 20;
+    for (let i = 0; i < links.length; i++) {
+        let link = links[i];
+
+        let startP, endP;
+        if (link.fromPoint.x < link.toPoint.x) {
+            startP = link.fromPoint;
+            endP = link.toPoint;
+        }
+        else {
+            startP = link.toPoint;
+            endP = link.fromPoint;
+        }
+
+        if (mouse.x < startP.x || mouse.x > endP.x ||
+        mouse.y < Math.min(startP.y, endP.y) || mouse.y > Math.max(startP.y, endP.y)) {
+            continue;
+        }
+        
+        
+        // If line has the equation y = m * x + n =>
+        // slope = (startP.y - endP.y) / (startP.x - endP.x);
+        let n = mouse.y / ((startP.y - endP.y) / (startP.x - endP.x) * mouse.x);
+
+        if (Math.abs(n) < THRESHOLD) { // If right click over link, remove it
+            link.destroy();
+            links.splice(i--, 1);
+            break;
+        }
+    }
 }
 
 function handleMouseUp(e) {
