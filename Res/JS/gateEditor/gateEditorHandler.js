@@ -28,13 +28,6 @@ window.onload = () => {
     addElement.input();
     addElement.output();
 
-    addElement.input();
-    addElement.AND(280, 180);
-
-    links.push(new LogicLink(inputs[0], gates[0], 0));
-    links.push(new LogicLink(inputs[1], gates[0], 1));
-    links.push(new LogicLink(gates[0], outputs[0], 0));
-
     updateTruthTableShape();
     show();
 }
