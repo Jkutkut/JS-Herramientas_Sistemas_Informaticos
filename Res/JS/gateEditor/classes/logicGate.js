@@ -385,6 +385,9 @@ class LogicGateOutput extends LogicGateIO {
     }
 
     get stringLogic() {
+        if (!this.IO.in[0]) {
+            return `${this.stringName} = `;
+        }
         return `${this.stringName} = ${this.IO.in[0].from.stringLogic}`;
     }
 
